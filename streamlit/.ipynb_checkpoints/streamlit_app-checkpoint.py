@@ -6,4 +6,4 @@ with open('./streamlit/sample_data.pickle', 'rb') as f:
     df = pickle.load(f)
 
 st.title('Twitter Sentiment Analysis')
-df.head()
+st.write(df)
