@@ -68,7 +68,7 @@ with col2:
         probability = predict_tweet_probability(text_input, best_logreg_model)
         if probability > 0.5:
             st.markdown("### Tweet is positive")
-            st.text(f"{probability * 100:.3g}%")
+            st.text(f"I am {probability * 100:.3g}% confident.")
         else:
             st.markdown("### Tweet is negative")
-            st.text(f"{(1 - probability) * 100:.3g}%")
+            st.text(f"I am {(1 - probability) * 100:.3g}% confident.")
