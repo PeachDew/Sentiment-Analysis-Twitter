@@ -9,6 +9,8 @@ st.title('Twitter Sentiment Analysis')
 st.text('Sample of dataframe:')
 st.dataframe(df.head(10))
 
+col1, col2 = st.columns(2)
+
 with col1:
     st.title('Tweet Prediction')
 
