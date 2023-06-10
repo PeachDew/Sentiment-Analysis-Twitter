@@ -51,22 +51,24 @@ def predict_tweet_probability(tweet, model):
     probability = model.predict_proba(transformed_tweet)[:, 1]
     return probability[0]
 
-col1, col2 = st.columns(2)
 
 st.title('Tweet Prediction')
 
+col1, col2 = st.columns(2)
 with col1:
+    st.markdown('### Tweet Away 👇')
     text_input = st.text_input(
-        "Tweet Away 👇",
+        "",
         placeholder="Enter Tweet Here",
+        label_visibility="collapsed"
     )
 
 with col2:
     if text_input:
         probability = predict_tweet_probability(text_input, best_logreg_model)
         if probability > 0.5:
-            st.markdown("### Probability that the tweet is positive:")
+            st.markdown("### Tweet is positive")
             st.text(f"{probability * 100:.3g}%")
         else:
-            st.markdown("### Probability that the tweet is negative:")
+            st.markdown("### Tweet is negative")
             st.text(f"{(1 - probability) * 100:.3g}%")
