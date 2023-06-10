@@ -13,8 +13,6 @@ with open('./streamlit/vectorizer.pickle', 'rb') as f:
     vectorizer = pickle.load(f)
 
 st.title('Twitter Sentiment Analysis')
-st.text('Sample of dataframe:')
-st.dataframe(df.head(10))
 
 import nltk
 from nltk.corpus import stopwords
@@ -52,7 +50,7 @@ def predict_tweet_probability(tweet, model):
     return probability[0]
 
 
-st.title('Tweet Prediction')
+st.markdown('## Tweet Prediction')
 
 col1, col2 = st.columns(2)
 with col1:
@@ -72,3 +70,6 @@ with col2:
         else:
             st.markdown("### Tweet is <span style='color: #f25c6e;'>negative</span>", unsafe_allow_html=True)
             st.text(f"I am {(1 - probability) * 100:.3g}% confident.")
+            
+st.markdown('## Sample of dataframe:')
+st.dataframe(df.head(10))            
