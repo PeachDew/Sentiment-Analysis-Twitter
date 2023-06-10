@@ -70,5 +70,5 @@ with col2:
             st.markdown("### Tweet is <span style='color: #78ff7f;'>positive</span>", unsafe_allow_html=True)
             st.text(f"I am {probability * 100:.3g}% confident.")
         else:
-            st.markdown("### Tweet is <span style='color: #f25c6e;'>negative</span>")
+            st.markdown("### Tweet is <span style='color: #f25c6e;'>negative</span>", unsafe_allow_html=True)
             st.text(f"I am {(1 - probability) * 100:.3g}% confident.")
