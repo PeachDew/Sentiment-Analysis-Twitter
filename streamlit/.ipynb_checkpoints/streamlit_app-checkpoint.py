@@ -53,8 +53,9 @@ def predict_tweet_probability(tweet, model):
 
 col1, col2 = st.columns(2)
 
+st.title('Tweet Prediction')
+
 with col1:
-    st.title('Tweet Prediction')
     text_input = st.text_input(
         "Tweet Away 👇",
         placeholder="Enter Tweet Here",
