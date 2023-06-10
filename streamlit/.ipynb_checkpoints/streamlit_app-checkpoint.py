@@ -66,6 +66,6 @@ with col2:
         probability = predict_tweet_probability(text_input, best_logreg_model)
 
         if probability > 0.5:
-            print(f"Probability that the tweet is positive: {probability * 100:.3g}%")
+            st.text(f"Probability that the tweet is positive: {probability * 100:.3g}%")
         else:
-            print(f"Probability that the tweet is negative: {(1 - probability) * 100:.3g}%")
+            st.text(f"Probability that the tweet is negative: {(1 - probability) * 100:.3g}%")
