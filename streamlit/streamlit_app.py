@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+import sklearn
 
 
 with open('./streamlit/sample_data.pickle', 'rb') as f:
