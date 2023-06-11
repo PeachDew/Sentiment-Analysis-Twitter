@@ -19,28 +19,19 @@ with open('./streamlit/sample_data.pickle', 'rb') as f:
 st.markdown('## Sample of dataframe:')
 st.dataframe(df.head(10))    
 
-months = df.month
-days = df.day
-hours = df.hour
-
 st.markdown('## Distribution of date elements:')
-fig, axes = plt.subplots(1, 3, figsize=(12, 4))
-sns.histplot(days, kde=False, ax=axes[0],binwidth=0.5)
-axes[0].set_title('Distribution by Day')
-axes[0].set_xlabel('Day')
-axes[0].set_ylabel('Count')
-axes[0].set_xticks(range(1, 31, 4))
-sns.histplot(months, kde=False, ax=axes[1],binwidth=0.5)
-axes[1].set_title('Distribution by Month')
-axes[1].set_xlabel('Month')
-axes[1].set_ylabel('Count')
-axes[1].set_xticks(range(1, 12))
-sns.histplot(hours, kde=False, ax=axes[2],binwidth=0.5)
-axes[2].set_title('Distribution by Hour')
-axes[2].set_xlabel('Hour')
-axes[2].set_ylabel('Count')
-axes[2].set_xticks(range(0,23,4))
-st.pyplot(fig)
+st.markdown("All data retrieved from 2009, from months April to June.")
 
-fig = px.histogram(df, x="day")
-st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+tab1, tab2, tab3 = st.tabs(["Hour", "Day", "Month"])
+
+with tab1:
+    fig = px.histogram(df, x="hour")
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    
+with tab2:
+    fig = px.histogram(df, x="day")
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    
+with tab3:
+    fig = px.histogram(df, x="month")
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
