@@ -15,7 +15,12 @@ with open('./streamlit/sample_data.pickle', 'rb') as f:
     df = pickle.load(f)
 
 st.markdown('## Sample of dataframe:')
-st.dataframe(df.head(10))     
+st.dataframe(df.head(10))    
+
+years = df.date_parsed.dt.year
+months = df.date_parsed.dt.month
+days = df.date_parsed.dt.day
+hours = df.date_parsed.dt.hour
 
 st.markdown('## Distribution of date elements:')
 fig, axes = plt.subplots(1, 3, figsize=(12, 4))
