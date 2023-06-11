@@ -2,10 +2,13 @@ import streamlit as st
 import pickle
 import sklearn
 
+
 st.set_page_config(
     page_title="Sentiment Analysis on Twitter",
     page_icon="🐦",
 )
+
+st.sidebar.header("Sentiment Predictor")
 
 # with open('./streamlit/sample_data.pickle', 'rb') as f:
 #     df = pickle.load(f)
