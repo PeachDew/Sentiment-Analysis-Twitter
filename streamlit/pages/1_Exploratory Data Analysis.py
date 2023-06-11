@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+import seaborn as sns
 
 st.set_page_config(page_title="EDA", page_icon="📈")
 
@@ -14,3 +15,21 @@ with open('./streamlit/sample_data.pickle', 'rb') as f:
 
 st.markdown('## Sample of dataframe:')
 st.dataframe(df.head(10))     
+
+st.markdown('## Distribution of date elements:')
+fig, axes = plt.subplots(1, 3, figsize=(12, 4))
+sns.histplot(days, kde=False, ax=axes[0],binwidth=0.5)
+axes[0].set_title('Distribution by Day')
+axes[0].set_xlabel('Day')
+axes[0].set_ylabel('Count')
+axes[0].set_xticks(range(1, 31, 4))
+sns.histplot(months, kde=False, ax=axes[1],binwidth=0.5)
+axes[1].set_title('Distribution by Month')
+axes[1].set_xlabel('Month')
+axes[1].set_ylabel('Count')
+axes[1].set_xticks(range(1, 12))
+sns.histplot(hours, kde=False, ax=axes[2],binwidth=0.5)
+axes[2].set_title('Distribution by Hour')
+axes[2].set_xlabel('Hour')
+axes[2].set_ylabel('Count')
+axes[2].set_xticks(range(0,23,4))
