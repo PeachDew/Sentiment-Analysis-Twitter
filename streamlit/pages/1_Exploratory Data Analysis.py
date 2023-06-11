@@ -33,17 +33,8 @@ with tab2:
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     
 with tab3:
-    fig = px.histogram(df, x="month", color_discrete_map = {0: '#f394ff',
-                                                            1: '#e889ff',
-                                                            2: '#dc7eff',
-                                                            3: '#d172f2',
-                                                            4: '#c367e6',
-                                                            5: '#b75cd9',
-                                                            6: '#ab51cd',
-                                                            7: '#9f46c1',
-                                                            8: '#933bb4',
-                                                            9: '#872fad',
-                                                            10: '#7b24a1',
-                                                            11: '#6f198f',
-                                                            12: '#63147c'})
+    fig = px.histogram(df, x="month", color = 'month', 
+                       color_discrete_map = {4: '#c367e6',
+                                             5: '#b75cd9',
+                                             6: '#ab51cd'})
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
