@@ -29,15 +29,20 @@ with tab1:
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     
 with tab2:
+    base_color = "#97a4fc"
+    num_values = 31 
+
     color_discrete_map = {}
-    for i in range(1, 32):
-        darkness = i / 310 
-        r = int(210 * darkness)  
-        g = int(151 * darkness)  
-        b = int(252 * darkness)  
-        color = f"#{r:02x}{g:02x}{b:02x}" 
+    for i in range(1, num_values + 1):
+        darkness = i / num_values  
+        r, g, b = tuple(int(base_color[i:i + 2], 16) for i in (1, 3, 5))  
+        r = int(r * darkness)  
+        g = int(g * darkness) 
+        b = int(b * darkness)  
+        color = f"#{r:02x}{g:02x}{b:02x}"  
         color_discrete_map[i] = color
     fig = px.histogram(df, x="day", color="day", color_discrete_map=color_discrete_map)
+    fig.update(layout_showlegend=False)
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     
 with tab3:
