@@ -17,7 +17,6 @@ with open('./streamlit/sample_data.pickle', 'rb') as f:
 st.markdown('## Sample of dataframe:')
 st.dataframe(df.head(10))    
 
-years = df.year
 months = df.month
 days = df.day
 hours = df.hour
