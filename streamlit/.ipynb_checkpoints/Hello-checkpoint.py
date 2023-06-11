@@ -3,11 +3,9 @@ import pickle
 import sklearn
 
 st.set_page_config(
-    page_title="Detecting Emotions from Tweets",
+    page_title="Sentiment Analysis on Twitter",
     page_icon="🐦",
 )
-
-st.sidebar.success("Select a page above.")
 
 # with open('./streamlit/sample_data.pickle', 'rb') as f:
 #     df = pickle.load(f)
