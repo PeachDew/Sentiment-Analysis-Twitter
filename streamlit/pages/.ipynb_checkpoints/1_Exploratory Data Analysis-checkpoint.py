@@ -26,11 +26,11 @@ tab1, tab2, tab3 = st.tabs(["Hour", "Day", "Month"])
 
 with tab1:
     base_color = "#f9fc97"
-    num_values = 31 
+    num_values = 24
 
     color_discrete_map = {}
-    for i in range(1, num_values + 1):
-        darkness = 0.5 + i / (num_values+31)  
+    for i in range(0, num_values + 1):
+        darkness = 0.7 + i / (num_values+31)  
         r, g, b = tuple(int(base_color[i:i + 2], 16) for i in (1, 3, 5))  
         r = int(r * darkness)  
         g = int(g * darkness) 
