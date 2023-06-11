@@ -31,8 +31,11 @@ with tab1:
 with tab2:
     color_discrete_map = {}
     for i in range(1, 32):
-        darkness = i / 31  # Gradually darkening value from 0 to 1
-        color = f"#{darkness:02x}{darkness:02x}{darkness:02x}"  # Hex color with gradually increasing darkness
+        darkness = i / 31  
+        r = int(210 * darkness)  
+        g = int(151 * darkness)  
+        b = int(252 * darkness)  
+        color = f"#{r:02x}{g:02x}{b:02x}" 
         color_discrete_map[i] = color
     fig = px.histogram(df, x="day", color="day", color_discrete_map=color_discrete_map)
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
