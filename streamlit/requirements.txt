@@ -1,2 +1,3 @@
 scikit-learn
 nltk>=3.8.1
+seaborn>=0.12.2
