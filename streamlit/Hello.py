@@ -2,6 +2,12 @@ import streamlit as st
 import pickle
 import sklearn
 
+st.set_page_config(
+    page_title="Detecting Emotions from Tweets",
+    page_icon="🐦",
+)
+
+st.sidebar.success("Select a page above.")
 
 with open('./streamlit/sample_data.pickle', 'rb') as f:
     df = pickle.load(f)
@@ -70,6 +76,4 @@ with col2:
         else:
             st.markdown("### Tweet is <span style='color: #f25c6e;'>negative</span>", unsafe_allow_html=True)
             st.text(f"I am {(1 - probability) * 100:.3g}% confident.")
-            
-st.markdown('## Sample of dataframe:')
-st.dataframe(df.head(10))            
+       
