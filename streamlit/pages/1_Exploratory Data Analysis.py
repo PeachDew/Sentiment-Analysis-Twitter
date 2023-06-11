@@ -31,7 +31,7 @@ with tab1:
 with tab2:
     color_discrete_map = {}
     for i in range(1, 32):
-        darkness = i / 31  
+        darkness = i / 310 
         r = int(210 * darkness)  
         g = int(151 * darkness)  
         b = int(252 * darkness)  
