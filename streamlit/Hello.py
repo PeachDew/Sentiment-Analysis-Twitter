@@ -9,8 +9,8 @@ st.set_page_config(
 
 st.sidebar.success("Select a page above.")
 
-with open('./streamlit/sample_data.pickle', 'rb') as f:
-    df = pickle.load(f)
+# with open('./streamlit/sample_data.pickle', 'rb') as f:
+#     df = pickle.load(f)
     
 with open('./streamlit/tfidf_logreg_model.pickle', 'rb') as f:
     best_logreg_model = pickle.load(f)

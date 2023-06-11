@@ -9,5 +9,8 @@ st.write(
     enjoy!"""
 )
 
+with open('./streamlit/sample_data.pickle', 'rb') as f:
+    df = pickle.load(f)
+
 st.markdown('## Sample of dataframe:')
 st.dataframe(df.head(10))     
