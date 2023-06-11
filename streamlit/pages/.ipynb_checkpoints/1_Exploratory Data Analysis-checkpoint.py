@@ -25,7 +25,21 @@ st.markdown("All data retrieved from 2009, from months April to June.")
 tab1, tab2, tab3 = st.tabs(["Hour", "Day", "Month"])
 
 with tab1:
-    fig = px.histogram(df, x="hour")
+    base_color = "#f9fc97"
+    num_values = 31 
+
+    color_discrete_map = {}
+    for i in range(1, num_values + 1):
+        darkness = 0.5 + i / (num_values+31)  
+        r, g, b = tuple(int(base_color[i:i + 2], 16) for i in (1, 3, 5))  
+        r = int(r * darkness)  
+        g = int(g * darkness) 
+        b = int(b * darkness)  
+        color = f"#{r:02x}{g:02x}{b:02x}"  
+        color_discrete_map[i] = color
+        
+    fig = px.histogram(df, x="hour", color="hour", color_discrete_map=color_discrete_map)
+    fig.update(layout_showlegend=False)
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     
 with tab2:
@@ -41,6 +55,7 @@ with tab2:
         b = int(b * darkness)  
         color = f"#{r:02x}{g:02x}{b:02x}"  
         color_discrete_map[i] = color
+        
     fig = px.histogram(df, x="day", color="day", color_discrete_map=color_discrete_map)
     fig.update(layout_showlegend=False)
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
@@ -50,4 +65,5 @@ with tab3:
                        color_discrete_map = {4: '#c367e6',
                                              5: '#b75cd9',
                                              6: '#ab51cd'})
+    fig.update(layout_showlegend=False)
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
