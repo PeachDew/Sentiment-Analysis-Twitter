@@ -65,7 +65,7 @@ with col2:
     if text_input:
         probability = predict_tweet_probability(text_input, best_logreg_model)
         if probability > 0.5:
-            st.markdown("### Tweet is <span style='color: blue;'>positive</span>", unsafe_allow_html=True)
+            st.markdown("### Tweet is <span style='color: #78ff7f;'>positive</span>", unsafe_allow_html=True)
             st.text(f"I am {probability * 100:.3g}% confident.")
         else:
             st.markdown("### Tweet is <span style='color: #f25c6e;'>negative</span>", unsafe_allow_html=True)
