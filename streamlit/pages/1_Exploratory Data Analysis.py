@@ -2,6 +2,8 @@ import streamlit as st
 import pickle
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
+
 
 st.set_page_config(page_title="EDA", page_icon="📈")
 
@@ -39,3 +41,6 @@ axes[2].set_xlabel('Hour')
 axes[2].set_ylabel('Count')
 axes[2].set_xticks(range(0,23,4))
 st.pyplot(fig)
+
+fig = px.histogram(df, x="day")
+st.plotly_chart(fig, theme="streamlit", use_container_width=True)

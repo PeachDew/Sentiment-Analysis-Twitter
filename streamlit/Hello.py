@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import sklearn
 
+
 st.set_page_config(
     page_title="Sentiment Analysis on Twitter",
     page_icon="🐦",
