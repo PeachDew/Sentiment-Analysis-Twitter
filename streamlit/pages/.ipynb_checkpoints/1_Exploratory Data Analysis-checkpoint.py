@@ -3,6 +3,7 @@ import pickle
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
+import pandas as pd
 
 
 st.set_page_config(page_title="EDA", page_icon="📈")
