@@ -83,7 +83,7 @@ negative_tweets_by_month = negative_tweets.groupby('month').size().reset_index(n
 
 merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='month', how='outer').fillna(0)
 combined_counts = pd.concat([merged_counts['positive_count'], merged_counts['negative_count']], axis=1)
-melted_counts = merged_counts.melt(var_name='month', value_name='Count', ignore_index=True)
+melted_counts = pd.melt(merged_counts, id_vars='month')
 st.dataframe(merged_counts)
 st.dataframe(combined_counts)
 st.dataframe(melted_counts)
