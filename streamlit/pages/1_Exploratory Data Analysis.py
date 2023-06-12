@@ -73,22 +73,42 @@ with tab3:
 
 
 st.markdown('## Comparing positive and negative tweets:')    
-
 positive_tweets = df[df['target'] == 4]
-negative_tweets = df[df['target'] == 0]
+negative_tweets = df[df['target'] == 0]    
+tab1, tab2, tab3 = st.tabs(["Hour", "Day", "Month"])
 
-positive_tweets_by_month = positive_tweets.groupby('month').size().reset_index(name='positive_count')
-negative_tweets_by_month = negative_tweets.groupby('month').size().reset_index(name='negative_count')
+with tab1:
+    positive_tweets_by_hour = positive_tweets.groupby('hour').size().reset_index(name='positive_count')
+    negative_tweets_by_hour = negative_tweets.groupby('hour').size().reset_index(name='negative_count')
 
-merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='month', how='outer').fillna(0)
+    merged_counts = positive_tweets_by_hour.merge(negative_tweets_by_hour, on='month', how='outer').fillna(0)
 
-fig = go.Figure(data=[
-    go.Bar(name='Positive', x=merged_counts['month'], y=merged_counts['positive_count']),
-    go.Bar(name='Negative', x=merged_counts['month'], y=merged_counts['negative_count'])
-])
+    fig = go.Figure(data=[
+        go.Bar(name='Positive', x=merged_counts['hour'], y=merged_counts['positive_count']),
+        go.Bar(name='Negative', x=merged_counts['hour'], y=merged_counts['negative_count'])
+    ])
 
-fig.update_layout(xaxis={'title': 'Month'}, yaxis={'title': 'Count'},
-                  title='Number of Positive and Negative Tweets by Month',
-                  barmode='group')
+    fig.update_layout(xaxis={'title': 'Hour'}, yaxis={'title': 'Count'},
+                      title='Number of Positive and Negative Tweets by Hour',
+                      barmode='group')
 
-st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
+    
+with tab2:
+
+with tab3:
+    positive_tweets_by_month = positive_tweets.groupby('month').size().reset_index(name='positive_count')
+    negative_tweets_by_month = negative_tweets.groupby('month').size().reset_index(name='negative_count')
+
+    merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='month', how='outer').fillna(0)
+
+    fig = go.Figure(data=[
+        go.Bar(name='Positive', x=merged_counts['month'], y=merged_counts['positive_count']),
+        go.Bar(name='Negative', x=merged_counts['month'], y=merged_counts['negative_count'])
+    ])
+
+    fig.update_layout(xaxis={'title': 'Month'}, yaxis={'title': 'Count'},
+                      title='Number of Positive and Negative Tweets by Month',
+                      barmode='group')
+
+    st.plotly_chart(fig, use_container_width=True)
