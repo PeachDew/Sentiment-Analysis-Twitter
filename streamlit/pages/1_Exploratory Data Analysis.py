@@ -96,3 +96,10 @@ plt.title('Number of Positive and Negative Tweets by Month')
 plt.legend()
 
 st.pyplot(fig)
+
+fig = px.bar(melted_counts, x='month', y='value', color='sentiment',
+             labels={'month': 'Month', 'value': 'Count', 'sentiment': 'Sentiment'},
+             title='Number of Positive and Negative Tweets by Month')
+fig.update_layout(showlegend=True)
+
+st.plotly_chart(fig, use_container_width=True)
