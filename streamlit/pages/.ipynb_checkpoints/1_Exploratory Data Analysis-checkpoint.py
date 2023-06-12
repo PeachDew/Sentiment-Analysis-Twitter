@@ -25,7 +25,7 @@ st.markdown("All data retrieved from 2009, from months April to June.")
 tab1, tab2, tab3 = st.tabs(["Hour", "Day", "Month"])
 
 with tab1:
-    base_color = "#f9fc97"
+    base_color = "#b9fa93"
     num_values = 24
 
     color_discrete_map = {}
