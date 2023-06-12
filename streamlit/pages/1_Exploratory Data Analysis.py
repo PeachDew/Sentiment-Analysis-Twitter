@@ -89,7 +89,7 @@ st.dataframe(merged_counts)
 st.dataframe(melted_counts)
 
 fig, ax = plt.subplots()
-sns.catplot(x='month', y='value', hue='sentiment', data=melted_counts, kind='bar', palette=['blue', 'red'], alpha=0.8)
+sns.catplot(x='month', y='value', hue='sentiment', data=melted_counts, kind='bar')
 plt.xlabel('Month')
 plt.ylabel('Count')
 plt.title('Number of Positive and Negative Tweets by Month')
