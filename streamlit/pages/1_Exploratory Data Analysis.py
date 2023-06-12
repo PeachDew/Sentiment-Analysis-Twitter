@@ -22,7 +22,7 @@ st.markdown('## Sample of dataframe:')
 st.markdown("Positive tweets' target value is 4, while negative tweets' is 0") 
 st.dataframe(df.head(10))    
 
-st.markdown('## Distribution of date elements:')
+st.markdown('## Frequency of tweets by Hour, Day, and Month')
 st.markdown("All data retrieved from 2009, from months April to June.")
 
 tab1, tab2, tab3 = st.tabs(["Hour", "Day", "Month"])
@@ -72,7 +72,7 @@ with tab3:
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
 
-st.markdown('## Comparing positive and negative tweets:')    
+st.markdown('## Separating positive and negative tweets:')    
 positive_tweets = df[df['target'] == 4]
 negative_tweets = df[df['target'] == 0]    
 tab1, tab2, tab3 = st.tabs(["Hour", "Day", "Month"])
@@ -127,3 +127,10 @@ with tab3:
                       barmode='group')
 
     st.plotly_chart(fig, use_container_width=True)
+    
+st.markdown('''Based on the analysis of the Twitter data, positive tweets tend to peak around midnight (in PDT) while negative tweets show a peak in the early morning hours of 6-9am (in PDT). Additionally, there is a noticeable pattern of increased positivity at the start and end of each month, while sentiments become more negative during the period of the 15th to the 25th of each month. 
+
+It is worth noting that the data exhibits gaps on certain specific dates, which raises questions about the data collection process. Further investigation is needed to ensure the quality and reliability of the data. 
+
+Notably, April and May show a higher proportion of positive tweets, while June stands out with a higher number of negative tweets.
+''')
