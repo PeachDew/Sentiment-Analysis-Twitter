@@ -85,6 +85,7 @@ merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='mon
 combined_counts = pd.concat([merged_counts['positive_count'], merged_counts['negative_count']], axis=1)
 melted_counts = combined_counts.melt(var_name='Sentiment', value_name='Count', ignore_index=False)
 
+st.dataframe(combined_counts)
 st.dataframe(melted_counts)
 
 fig, ax = plt.subplots()
