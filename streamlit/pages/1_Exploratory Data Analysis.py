@@ -74,8 +74,6 @@ with tab3:
 
 st.markdown('## Comparing positive and negative tweets:')    
 
-sns.set_theme(style='darkgrid')
-
 positive_tweets = df[df['target'] == 4]
 negative_tweets = df[df['target'] == 0]
 
@@ -83,21 +81,6 @@ positive_tweets_by_month = positive_tweets.groupby('month').size().reset_index(n
 negative_tweets_by_month = negative_tweets.groupby('month').size().reset_index(name='negative_count')
 
 merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='month', how='outer').fillna(0)
-melted_counts = pd.melt(merged_counts, id_vars='month')
-melted_counts = melted_counts.rename(columns={"variable": "sentiment"})
-
-st.dataframe(merged_counts)
-st.dataframe(melted_counts)
-
-fig, ax = plt.subplots()
-sns.catplot(x='month', y='value', hue='sentiment', data=melted_counts, kind='bar')
-plt.xlabel('Month')
-plt.ylabel('Count')
-plt.title('Number of Positive and Negative Tweets by Month')
-plt.legend()
-
-st.pyplot(fig)
-
 
 fig = go.Figure(data=[
     go.Bar(name='Positive', x=merged_counts['month'], y=merged_counts['positive_count']),
