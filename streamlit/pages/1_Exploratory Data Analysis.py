@@ -83,13 +83,13 @@ negative_tweets_by_month = negative_tweets.groupby('month').size().reset_index(n
 
 merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='month', how='outer').fillna(0)
 combined_counts = pd.concat([merged_counts['positive_count'], merged_counts['negative_count']], axis=1)
-melted_counts = combined_counts.melt(var_name='Sentiment', value_name='Count', ignore_index=False)
+melted_counts = merged_counts.melt(var_name='month', value_name='Count', ignore_index=False)
 st.dataframe(merged_counts)
 st.dataframe(combined_counts)
 st.dataframe(melted_counts)
 
 fig, ax = plt.subplots()
-sns.catplot(x='month', y='Count', hue='Sentiment', data=melted_counts, kind='bar', palette=['blue', 'red'], alpha=0.8)
+sns.catplot(x='month', y='Count', hue='Sentiment', data=merged_counts, kind='bar', palette=['blue', 'red'], alpha=0.8)
 plt.xlabel('Month')
 plt.ylabel('Count')
 plt.title('Number of Positive and Negative Tweets by Month')
