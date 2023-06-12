@@ -86,7 +86,6 @@ melted_counts = pd.melt(merged_counts, id_vars='month')
 melted_counts = melted_counts.rename(columns={"variable": "sentiment"})
 
 st.dataframe(merged_counts)
-st.dataframe(combined_counts)
 st.dataframe(melted_counts)
 
 fig, ax = plt.subplots()
