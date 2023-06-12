@@ -17,6 +17,7 @@ with open('./streamlit/sample_data.pickle', 'rb') as f:
     df = pickle.load(f)
 
 st.markdown('## Sample of dataframe:')
+st.markdown("Positive tweets' target value is 4, while negative tweets' is 0") 
 st.dataframe(df.head(10))    
 
 st.markdown('## Distribution of date elements:')
@@ -67,3 +68,26 @@ with tab3:
                                              6: '#ab51cd'})
     fig.update(layout_showlegend=False)
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+
+
+st.markdown('## Comparing positive and negative tweets:')    
+
+sns.set_theme(style='darkgrid')
+
+positive_tweets = df[df['target'] == 4]
+negative_tweets = df[df['target'] == 0]
+
+positive_tweets_by_month = positive_tweets.groupby('month').size().reset_index(name='positive_count')
+negative_tweets_by_month = negative_tweets.groupby('month').size().reset_index(name='negative_count')
+
+merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='month', how='outer').fillna(0)
+
+fig, ax = plt.subplots()
+sns.barplot(x='month', y='positive_count', data=merged_counts, color='blue', alpha=0.8, label='Positive Tweets', ax=ax)
+sns.barplot(x='month', y='negative_count', data=merged_counts, color='red', alpha=0.8, label='Negative Tweets', ax=ax, bottom=merged_counts['positive_count'])
+plt.xlabel('Month')
+plt.ylabel('Count')
+plt.title('Number of Positive and Negative Tweets by Month (Stacked)')
+plt.legend()
+
+st.pyplot(fig)
