@@ -30,7 +30,7 @@ with tab1:
 
     color_discrete_map = {}
     for i in range(0, num_values + 1):
-        darkness = 0.6 + i / (num_values+24)  
+        darkness = 0.6 + i / (num_values+35)  
         r, g, b = tuple(int(base_color[i:i + 2], 16) for i in (1, 3, 5))  
         r = int(r * darkness)  
         g = int(g * darkness) 
