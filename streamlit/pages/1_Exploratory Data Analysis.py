@@ -78,8 +78,8 @@ sns.set_theme(style='darkgrid')
 positive_tweets = df[df['target'] == 4]
 negative_tweets = df[df['target'] == 0]
 
-positive_tweets_by_month = positive_tweets.groupby('month').size().reset_index(name='positive_count')
-negative_tweets_by_month = negative_tweets.groupby('month').size().reset_index(name='negative_count')
+positive_tweets_by_month = positive_tweets.groupby('month').size()
+negative_tweets_by_month = negative_tweets.groupby('month').size()
 
 merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='month', how='outer').fillna(0)
 combined_counts = pd.concat([merged_counts['positive_count'], merged_counts['negative_count']], axis=1)
