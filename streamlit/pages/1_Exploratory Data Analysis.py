@@ -3,6 +3,7 @@ import pickle
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
+import plotly.graph_objects as go
 import pandas as pd
 
 
@@ -97,9 +98,14 @@ plt.legend()
 
 st.pyplot(fig)
 
-fig = px.bar(melted_counts, x='month', y='value', color='sentiment',
-             labels={'month': 'Month', 'value': 'Count', 'sentiment': 'Sentiment'},
-             title='Number of Positive and Negative Tweets by Month')
-fig.update_layout(showlegend=True)
+
+fig = go.Figure(data=[
+    go.Bar(name='Positive', x=merged_counts['month'], y=merged_counts['positive_count']),
+    go.Bar(name='Negative', x=merged_counts['month'], y=merged_counts['negative_count'])
+])
+
+fig.update_layout(xaxis={'title': 'Month'}, yaxis={'title': 'Count'},
+                  title='Number of Positive and Negative Tweets by Month',
+                  barmode='group')
 
 st.plotly_chart(fig, use_container_width=True)
