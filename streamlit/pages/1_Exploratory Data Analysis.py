@@ -83,11 +83,10 @@ negative_tweets_by_month = negative_tweets.groupby('month').size().reset_index(n
 merged_counts = positive_tweets_by_month.merge(negative_tweets_by_month, on='month', how='outer').fillna(0)
 
 fig, ax = plt.subplots()
-sns.barplot(x='month', y='positive_count', data=merged_counts, color='blue', alpha=0.8, label='Positive Tweets', ax=ax)
-sns.barplot(x='month', y='negative_count', data=merged_counts, color='red', alpha=0.8, label='Negative Tweets', ax=ax, bottom=merged_counts['positive_count'])
+sns.catplot(x='month', y='Count', hue='target', data=df, kind='bar', palette=['blue', 'red'], alpha=0.8)
 plt.xlabel('Month')
 plt.ylabel('Count')
-plt.title('Number of Positive and Negative Tweets by Month (Stacked)')
+plt.title('Number of Positive and Negative Tweets by Month')
 plt.legend()
 
 st.pyplot(fig)
