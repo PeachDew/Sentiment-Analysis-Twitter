@@ -27,8 +27,11 @@ st.write('Your favorite number is:', favno)
 tweets = st.number_input('Number of tweets', value=500)
 st.write('You tweeted this many times:', tweets)
 
-txt = st.text_area('Twitter description', 'I love farming!')
-st.write("Your description:", txt)
+desc = st.text_area('Twitter description', 'I love farming!')
+st.write("Your description:", desc)
+
+txt = st.text_area('Paste a random tweet from your account:', 'Feelin good at the sunny beach B)')
+st.write("Your tweet:", txt)
 
 color = st.color_picker('Your twitter link color', '#1DA1F2')
 st.write('The current color is', color)
