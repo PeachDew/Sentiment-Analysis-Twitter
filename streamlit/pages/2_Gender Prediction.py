@@ -21,8 +21,11 @@ with open('./streamlit/sample_data.pickle', 'rb') as f:
 title = st.text_input('Twitter Username', 'Lydia23')
 st.write('Your username is:', title)
 
-favno = st.number_input('Favorite number')
+favno = st.number_input('Favorite number', value=42)
 st.write('Your favorite number is:', favno)
+
+tweets = st.number_input('Number of tweets', value=500)
+st.write('You tweeted this many times:', tweets)
 
 txt = st.text_area('Twitter description', 'I love farming!')
 st.write("Your description:", txt)
