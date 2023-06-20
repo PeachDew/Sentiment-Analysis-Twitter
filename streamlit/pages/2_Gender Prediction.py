@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import pandas as pd
 
 
-st.set_page_config(page_title="Gender Prediction", page_icon="👨👩")
+st.set_page_config(page_title="Gender Prediction", page_icon="👫")
 
 st.sidebar.header("Predicting your Gender from viewing your profile.")
 st.write(
