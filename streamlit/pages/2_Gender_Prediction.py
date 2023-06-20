@@ -1,9 +1,5 @@
 import streamlit as st
 import pickle
-import seaborn as sns
-import matplotlib.pyplot as plt
-import plotly.express as px
-import plotly.graph_objects as go
 import pandas as pd
 
 
@@ -13,9 +9,6 @@ st.sidebar.header("Predicting your Gender from viewing your profile.")
 st.write(
     """Description here."""
 )
-
-with open('./streamlit/sample_data.pickle', 'rb') as f:
-    df = pickle.load(f)
 
 col1, col2 = st.columns(2)
 with col1:
@@ -37,9 +30,8 @@ with col1:
     color = st.color_picker('Your twitter link color', '#1DA1F2')
     st.write('The current color is', color)
     
-    pred_button = st.button('Generate')
-    
 with col2:
+    pred_button = st.button('Generate Prediction')
     if pred_button:
         st.write("Prediction here")
 
