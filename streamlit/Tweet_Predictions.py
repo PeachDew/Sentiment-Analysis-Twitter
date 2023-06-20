@@ -64,7 +64,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.markdown('### Tweet Away 👇')
     text_input = st.text_input(
-        "",
+        "b",
         placeholder="Enter Tweet Here",
         label_visibility="collapsed"
     )
