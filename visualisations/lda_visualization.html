@@ -2,11 +2,18 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/bmabey/pyLDAvis@3.4.0/pyLDAvis/js/ldavis.v1.0.0.css">
 
 <style>
-.responsive-visualization {
-    width: 70%;
-    height: 100%;
+.responsive-visualization .ldavis-tooltip {
+    font-size: 12px;
 }
 
+.responsive-visualization .ldavis-plot-area {
+    overflow: hidden;
+}
+
+.responsive-visualization .ldavis-plot-area svg {
+    width: 100% !important;
+    height: auto !important;
+}
 </style>
 
 <div id="ldavis_el11101401443700222407364712141" class="responsive-visualization" style="background-color:white;"></div>
