@@ -18,7 +18,7 @@ with col1:
                               label_visibility = "hidden", 
                               placeholder = 'Twitter Username')
     with cold:
-        color = st.color_picker('Your twitter link color', '#1DA1F2')
+        color = st.color_picker('Twitter Link Color', '#1DA1F2')
     
     cola, colb = st.columns(2)
     with cola:
@@ -28,15 +28,17 @@ with col1:
 
     desc = st.text_area('Twitter description', placeholder='I love farming!')
 
-    txt = st.text_area('Paste a random tweet from your account:', placeholder='Feelin good at the sunny beach B)')
-
-    color = st.color_picker('Your twitter link color', '#1DA1F2')
+    txt = st.text_area('Paste a random tweet from your account:',
+                       placeholder='Feelin good at the sunny beach B)')
     
 with col2:
     pred_button = st.button('Generate Prediction')
     if pred_button:
-        st.balloons()
-        st.write("Prediction here")
+        if title and favno and tweets and desc and txt:
+            st.balloons()
+            st.write("Prediction here")
+        else:
+            st.error("Please fill in all the input fields.")
 
         
 st.markdown("### LDA (Latent Dirichlet Allocation)")
