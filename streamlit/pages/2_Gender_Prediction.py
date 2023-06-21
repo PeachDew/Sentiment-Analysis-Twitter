@@ -12,11 +12,17 @@ st.write(
 
 col1, col2 = st.columns(2)
 with col1:
-    title = st.text_input('Twitter Username', 'Lydia23')
+    title = st.text_input('Twitter Username', 'Lydia23',
+                          label_visibility = "hidden", 
+                          placeholder = 'Twitter Username')
     st.write('Your username is:', title)
-
+    
+    st.divider()
+    
     favno = st.number_input('Favorite number', value=42)
     st.write('Your favorite number is:', favno)
+    
+    st.divider()
 
     tweets = st.number_input('Number of tweets', value=500)
     st.write('You tweeted this many times:', tweets)
