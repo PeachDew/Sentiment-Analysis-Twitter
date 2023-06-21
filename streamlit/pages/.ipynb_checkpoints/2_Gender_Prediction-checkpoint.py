@@ -12,25 +12,23 @@ st.write(
 
 col1, col2 = st.columns(2)
 with col1:
-    title = st.text_input('Twitter Username', 'Lydia23',
+    title = st.text_input('Twitter Username', '',
                           label_visibility = "hidden", 
                           placeholder = 'Twitter Username')
     st.write('Your username is:', title)
     
-    st.divider()
-    
-    favno = st.number_input('Favorite number', value=42)
-    st.write('Your favorite number is:', favno)
-    
-    st.divider()
+    cola, colb = st.columns(2)
+    with cola:
+        favno = st.number_input('Favorite number', value=42)
+        st.write('Your favorite number is:', favno)
+    with colb:
+        tweets = st.number_input('Number of tweets', value=500)
+        st.write('You tweeted this many times:', tweets)
 
-    tweets = st.number_input('Number of tweets', value=500)
-    st.write('You tweeted this many times:', tweets)
-
-    desc = st.text_area('Twitter description', 'I love farming!')
+    desc = st.text_area('Twitter description', placeholder='I love farming!')
     st.write("Your description:", desc)
 
-    txt = st.text_area('Paste a random tweet from your account:', 'Feelin good at the sunny beach B)')
+    txt = st.text_area('Paste a random tweet from your account:', placeholder='Feelin good at the sunny beach B)')
     st.write("Your tweet:", txt)
 
     color = st.color_picker('Your twitter link color', '#1DA1F2')
