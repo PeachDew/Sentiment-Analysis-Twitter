@@ -33,12 +33,13 @@ with col1:
 with col2:
     pred_button = st.button('Generate Prediction')
     if pred_button:
+        st.balloons()
         st.write("Prediction here")
 
         
 st.markdown("### LDA (Latent Dirichlet Allocation)")
 st.write("LDA (Latent Dirichlet Allocation) is an algorithm used for topic modeling, a method that helps uncover the hidden themes and patterns within a collection of documents. It's like having a detective investigating a library full of books, trying to figure out the different topics covered. LDA assumes that each document is a mixture of various topics, and each topic is characterized by a distribution of words. By carefully examining the words and their frequencies, LDA helps us identify and understand the underlying themes present in the documents. It's a powerful tool for organizing and making sense of large volumes of text data.")
 output_file = "./visualisations/lda_visualization.html"
-st.components.v1.html(open(output_file, 'r', encoding='utf-8').read(), height=800, width=800, scrolling=True)
+st.components.v1.html(open(output_file, 'r', encoding='utf-8').read(), height=700, width=800, scrolling=True)
 
 
