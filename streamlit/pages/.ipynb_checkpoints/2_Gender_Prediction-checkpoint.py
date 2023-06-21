@@ -38,5 +38,5 @@ with col2:
         
 st.write("Some visualisations from gender dataset")
 output_file = "./visualisations/lda_visualization.html"
-st.components.v1.html(open(output_file, 'r', encoding='utf-8').read(), height=800)
+st.components.v1.html(open(output_file, 'r', encoding='utf-8').read(), height=500)
 
