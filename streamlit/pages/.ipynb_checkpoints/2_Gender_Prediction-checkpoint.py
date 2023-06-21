@@ -12,27 +12,25 @@ st.write(
 
 col1, col2 = st.columns(2)
 with col1:
-    title = st.text_input('Twitter Username', '',
-                          label_visibility = "hidden", 
-                          placeholder = 'Twitter Username')
-    st.write('Your username is:', title)
+    colc, cold = st.beta_columns([3,1])
+    with colc:
+        title = st.text_input('Twitter Username', '',
+                              label_visibility = "hidden", 
+                              placeholder = 'Twitter Username')
+    with cold:
+        color = st.color_picker('Your twitter link color', '#1DA1F2')
     
     cola, colb = st.columns(2)
     with cola:
         favno = st.number_input('Favorite number', value=42)
-        st.write('Your favorite number is:', favno)
     with colb:
         tweets = st.number_input('Number of tweets', value=500)
-        st.write('You tweeted this many times:', tweets)
 
     desc = st.text_area('Twitter description', placeholder='I love farming!')
-    st.write("Your description:", desc)
 
     txt = st.text_area('Paste a random tweet from your account:', placeholder='Feelin good at the sunny beach B)')
-    st.write("Your tweet:", txt)
 
     color = st.color_picker('Your twitter link color', '#1DA1F2')
-    st.write('The current color is', color)
     
 with col2:
     pred_button = st.button('Generate Prediction')
