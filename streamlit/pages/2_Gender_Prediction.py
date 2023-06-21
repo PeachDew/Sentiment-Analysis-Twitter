@@ -6,8 +6,11 @@ import pandas as pd
 st.set_page_config(page_title="Gender Prediction", page_icon="👫")
 
 st.sidebar.header("Predicting your Gender from viewing your profile.")
-st.write(
-    """Description here."""
+st.markdown(
+    """
+# Gender/Brand Prediction App
+This app utilizes machine learning to make predictions based on a Twitter user profile. Simply provide us with some information about a Twitter user, and we'll generate a prediction for you!
+"""
 )
 
 col1, col2 = st.columns(2)
