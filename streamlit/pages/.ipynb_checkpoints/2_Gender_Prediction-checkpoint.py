@@ -12,7 +12,7 @@ st.write(
 
 col1, col2 = st.columns(2)
 with col1:
-    colc, cold = st.beta_columns([3,1])
+    colc, cold = st.columns([3,1])
     with colc:
         title = st.text_input('Twitter Username', '',
                               label_visibility = "hidden", 
