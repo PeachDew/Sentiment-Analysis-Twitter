@@ -105,7 +105,8 @@ with col1:
     else: 
         mean_desc_embed = default_embedding
         
-    st.write(mean_desc_embed)
+    desc_pred = desc_model.predict(mean_desc_embed)[0]
+    values[7] = desc_pred
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
@@ -118,8 +119,11 @@ with col1:
         mean_text_embed = np.mean(tembeddings, axis=0)
     else: 
         mean_text_embed = default_embedding
+        
+    text_pred = text_model.predict(mean_text_embed)[0]
+    values[8] = text_pred
 
-    st.write(mean_text_embed)
+    st.write(values)
    
     
 with col2:
