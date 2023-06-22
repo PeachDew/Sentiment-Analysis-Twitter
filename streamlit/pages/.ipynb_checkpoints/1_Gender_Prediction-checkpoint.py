@@ -133,7 +133,6 @@ with col2:
         if name and favno and tweets and desc and txt:
             st.balloons()
             data = {col_name: [value] for col_name, value in zip(col_names, values)}
-            df = pd.DataFrame(data)
             desired_order = ['fav_number', 'text_pred', 'desc_pred',
                              'name_pred', 'red_ratio', 'green_ratio',
                              'blue_ratio', 'tweet_count', 'uppercase_count']
@@ -146,7 +145,12 @@ with col2:
                 st.markdown("## <div style='color: #7EA7FF; text-align: center;'>Boy 👦</div>", unsafe_allow_html=True)
             else:
                 st.markdown("## <div style='color: #FFEBCC; text-align: center; '>Brand Account 🏢</div>", unsafe_allow_html=True)
-                st.write(gender_pred[2])
+                col3, col4 = st.columns(2)
+                with col3:
+                    st.markdown("### <div style='color: #F7A9FF; text-align: center;'>Girl 👧</div>", unsafe_allow_html=True)
+                with col4:
+                    st.markdown(f"### <div style='color: #BA82FF; text-align: center;'>Girl 👧 {gender_pred[0]}</div>", unsafe_allow_html=True)
+        
         else:
             st.error("Please fill in all the input fields.")
 
