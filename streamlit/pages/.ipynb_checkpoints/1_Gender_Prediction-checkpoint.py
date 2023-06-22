@@ -101,6 +101,7 @@ with col1:
     embeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
     mean_desc_embed = np.mean(embeddings, axis=0)
     
+    st.write(mean_desc_embed)
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
@@ -109,7 +110,7 @@ with col1:
     filtered_tokens_txt = [token for token in lemmatized_tokens if token not in stop_words]
     embeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
     mean_text_embed = np.mean(embeddings, axis=0)
-    
+
     st.write(mean_text_embed)
     
 with col2:
