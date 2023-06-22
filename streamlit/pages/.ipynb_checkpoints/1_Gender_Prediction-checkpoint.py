@@ -102,7 +102,7 @@ with col1:
                    for token in filtered_tokens_desc]
     mean_desc_embed = np.mean(dembeddings, axis=0)
     
-    st.write(dembeddings)
+    st.write(mean_desc_embed)
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
@@ -110,10 +110,10 @@ with col1:
     tlemmatized_tokens = [lemmatizer.lemmatize(token) for token in ttokens]
     filtered_tokens_txt = [token for token in tlemmatized_tokens if token not in stop_words]
     tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding
-                   for token in filtered_tokens_desc]
+                   for token in filtered_tokens_txt]
     mean_text_embed = np.mean(tembeddings, axis=0)
 
-    st.write(tembeddings)
+    st.write(mean_text_embed)
     
 with col2:
     pred_button = st.button('Generate Prediction')
