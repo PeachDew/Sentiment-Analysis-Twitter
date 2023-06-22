@@ -127,7 +127,7 @@ with col1:
 with col2:
     pred_button = st.button('Generate Prediction')
     if pred_button:
-        if title and favno and tweets and desc and txt:
+        if name and favno and tweets and desc and txt:
             st.balloons()
             data = {col_name: [value] for col_name, value in zip(col_names, values)}
             df = pd.DataFrame(data)
