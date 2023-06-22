@@ -45,7 +45,7 @@ with col1:
         values[8] = uppercase_count
         name_processed = re.sub('[^a-zA-Z0-9]', '', name).lower()
         boc = vectorizer.transform([name_processed])
-        name_pred = name_model.predict(boc.toarray())
+        name_pred = name_model.predict(boc.toarray())[0]
         values[0] = name_pred
         st.write(name_processed)
         st.write(values)
