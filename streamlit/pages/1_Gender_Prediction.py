@@ -147,9 +147,9 @@ with col2:
                 st.markdown("## <div style='color: #FFEBCC; text-align: center; '>Brand Account 🏢</div>", unsafe_allow_html=True)
                 col3, col4 = st.columns(2)
                 with col3:
-                    st.markdown("### <div style='color: #F7A9FF; text-align: center;'>Girl 👧</div>", unsafe_allow_html=True)
+                    st.markdown(f"### <div style='color: #F7A9FF; text-align: center;'>Girl 👧 {gender_pred[0]*100:.3g%} </div>", unsafe_allow_html=True)
                 with col4:
-                    st.markdown(f"### <div style='color: #BA82FF; text-align: center;'>{gender_pred[0]:.3g}</div>", unsafe_allow_html=True)
+                    st.markdown(f"### <div style='color: #7EA7FF; text-align: center;'>Boy 👦 {gender_pred[1]*100:.3g%}</div>", unsafe_allow_html=True)
         
         else:
             st.error("Please fill in all the input fields.")
