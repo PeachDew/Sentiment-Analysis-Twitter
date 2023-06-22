@@ -100,8 +100,11 @@ with col1:
     filtered_tokens_desc = [token for token in dlemmatized_tokens if token not in stop_words]
     dembeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding
                    for token in filtered_tokens_desc]
-    mean_desc_embed = np.mean(dembeddings, axis=0)
-    
+    if len(dembeddings) > 0:
+        mean_desc_embed = np.mean(dembeddings, axis=0)
+    else: 
+        mean_desc_embed = default_embedding
+        
     st.write(mean_desc_embed)
 
     txt = st.text_area('Paste a random tweet from your account:',
@@ -111,10 +114,13 @@ with col1:
     filtered_tokens_txt = [token for token in tlemmatized_tokens if token not in stop_words]
     tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding
                    for token in filtered_tokens_txt]
-    mean_text_embed = np.mean(tembeddings, axis=0)
+    if len(tembeddings) > 0:
+        mean_text_embed = np.mean(tembeddings, axis=0)
+    else: 
+        mean_text_embed = default_embedding
 
     st.write(mean_text_embed)
-    st.write(tembeddings)
+   
     
 with col2:
     pred_button = st.button('Generate Prediction')
