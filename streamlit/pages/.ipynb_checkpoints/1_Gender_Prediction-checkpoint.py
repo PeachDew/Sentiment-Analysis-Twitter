@@ -98,20 +98,22 @@ with col1:
     dtokens = gensim.utils.simple_preprocess(desc)
     dlemmatized_tokens = [lemmatizer.lemmatize(token) for token in dtokens]
     filtered_tokens_desc = [token for token in dlemmatized_tokens if token not in stop_words]
-    dembeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
+    dembeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding
+                   for token in filtered_tokens_desc]
     mean_desc_embed = np.mean(dembeddings, axis=0)
     
-    st.write(mean_desc_embed)
+    st.write(filtered_tokens_desc)
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
     ttokens = gensim.utils.simple_preprocess(txt)
     tlemmatized_tokens = [lemmatizer.lemmatize(token) for token in ttokens]
     filtered_tokens_txt = [token for token in tlemmatized_tokens if token not in stop_words]
-    tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
+    tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding
+                   for token in filtered_tokens_desc]
     mean_text_embed = np.mean(tembeddings, axis=0)
 
-    st.write(mean_text_embed)
+    st.write(filtered_tokens_txt)
     
 with col2:
     pred_button = st.button('Generate Prediction')
