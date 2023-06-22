@@ -102,7 +102,7 @@ with col1:
                    for token in filtered_tokens_desc]
     mean_desc_embed = np.mean(dembeddings, axis=0)
     
-    st.write(filtered_tokens_desc)
+    st.write(dembeddings)
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
@@ -113,7 +113,7 @@ with col1:
                    for token in filtered_tokens_desc]
     mean_text_embed = np.mean(tembeddings, axis=0)
 
-    st.write(filtered_tokens_txt)
+    st.write(tembeddings)
     
 with col2:
     pred_button = st.button('Generate Prediction')
