@@ -39,6 +39,10 @@ with open("./Gender_Model_Save/logregdesc.pkl", "rb") as file:
     desc_model = pickle.load(file)
 with open("./Gender_Model_Save/vectorizer.pkl", "rb") as file:
     vectorizer = pickle.load(file)
+with open("./Gender_Model_Save/desc_w2v_model.pkl", "rb") as file:
+    desc_w2v_model = pickle.load(file)
+with open("./Gender_Model_Save/text_w2v_model.pkl", "rb") as file:
+    text_w2v_model = pickle.load(file)    
 
 col_names = ['name_pred','red_ratio','green_ratio',
              'blue_ratio','fav_number','tweet_count',
@@ -88,19 +92,25 @@ with col1:
         values[5] = tweets
         
     
-
+    default_embedding = np.zeros(w2v_model.vector_size)
+    
     desc = st.text_area('Twitter description', placeholder='I love farming!')
     tokens = gensim.utils.simple_preprocess(desc)
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
     filtered_tokens_desc = [token for token in lemmatized_tokens if token not in stop_words]
-    st.write(filtered_tokens_desc)
+    embeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
+    mean_desc_embed = np.mean(embeddings, axis=0)
+    
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
     tokens = gensim.utils.simple_preprocess(txt)
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
     filtered_tokens_txt = [token for token in lemmatized_tokens if token not in stop_words]
-    st.write(filtered_tokens_txt)
+    embeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
+    mean_text_embed = np.mean(embeddings, axis=0)
+    
+    st.write(mean_text_embed)
     
 with col2:
     pred_button = st.button('Generate Prediction')
