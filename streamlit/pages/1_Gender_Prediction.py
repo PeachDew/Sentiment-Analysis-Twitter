@@ -38,7 +38,7 @@ col_names = ['name_pred','red_ratio','green_ratio',
         
 
 def hex_to_rgb(hex_code):
-    hex_code = '#' + hex_code 
+    # hex_code = '#' + hex_code 
     try:
         rgb = webcolors.hex_to_rgb(hex_code)
     except ValueError:
