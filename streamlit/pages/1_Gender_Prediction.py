@@ -92,8 +92,7 @@ with col1:
         tweets = st.number_input('Number of tweets', value=500)
         values[5] = tweets
         
-    
-    default_embedding = np.zeros(w2v_model.vector_size)
+    default_embedding = np.zeros(desc_w2v_model.vector_size)
     
     desc = st.text_area('Twitter description', placeholder='I love farming!')
     tokens = gensim.utils.simple_preprocess(desc)
