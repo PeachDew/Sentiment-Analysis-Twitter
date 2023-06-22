@@ -134,6 +134,10 @@ with col2:
             st.balloons()
             data = {col_name: [value] for col_name, value in zip(col_names, values)}
             df = pd.DataFrame(data)
+            desired_order = ['fav_number', 'text_pred', 'desc_pred',
+                             'name_pred', 'red_ratio', 'green_ratio',
+                             'blue_ratio', 'tweet_count', 'uppercase_count']
+            df = df.reindex(columns=desired_order)
             st.dataframe(df)
             gender_pred = final_model.predict(df)
             st.write(gender_pred)
