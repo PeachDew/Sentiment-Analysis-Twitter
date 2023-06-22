@@ -41,7 +41,7 @@ with col1:
     with colc:
         name = st.text_input('Twitter Username', '',
                               placeholder = 'Twitter Username')
-        uppercase_count = sum(1 for char in string if char.isupper())
+        uppercase_count = sum(1 for char in name if char.isupper())
         values[8] = uppercase_count
         name_processed = name.replace('[^a-zA-Z0-9]', '', regex=True).lower()
         boc = vectorizer.transform([name_processed])
