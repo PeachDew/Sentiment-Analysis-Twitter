@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 import pickle
+import webcolors
 import re
 
 from sklearn.feature_extraction.text import CountVectorizer
@@ -34,6 +35,19 @@ col_names = ['name_pred','red_ratio','green_ratio',
              'blue_ratio','fav_number','tweet_count',
              'desc_pred','pred_pred','uppercase_count']
 
+        
+
+def hex_to_rgb(hex_code):
+    hex_code = '#' + hex_code 
+    try:
+        rgb = webcolors.hex_to_rgb(hex_code)
+    except ValueError:
+        hex_code = "#0084B4"
+        rgb = webcolors.hex_to_rgb(hex_code)
+    sum_rgb = sum(rgb)
+    ratios = [comp / sum_rgb for comp in rgb]
+    return ratios
+
 values = [None for i in range(len(col_names))]
 col1, col2 = st.columns(2)
 with col1:
@@ -47,10 +61,12 @@ with col1:
         boc = vectorizer.transform([name_processed])
         name_pred = name_model.predict(boc.toarray())[0]
         values[0] = name_pred
-        st.write(name_processed)
-        st.write(values)
+        
+        
     with cold:
         color = st.color_picker('Twitter Link Color', '#1DA1F2')
+        values[1], values[2], values[3] = hex_to_rgb(color)
+        st.write(values)
     
     cola, colb = st.columns(2)
     with cola:
