@@ -128,7 +128,9 @@ with col1:
    
     
 with col2:
-    pred_button = st.button('Generate Prediction')
+    colb1, colb2, colb3 = st.columns([1,4,1])
+    with colb2:
+        pred_button = st.button('Generate Prediction')
     if pred_button:
         if name and favno and tweets and desc and txt:
             st.balloons()
@@ -139,10 +141,26 @@ with col2:
             df = pd.DataFrame(data)
             df = df.reindex(columns=desired_order)
             gender_pred = final_model.predict_proba(df)[0]
+            
+            
             if (gender_pred[0] > gender_pred[1]) and (gender_pred[0] > gender_pred[2]):
                 st.markdown("## <div style='color: #F7A9FF; text-align: center;'>Girl 👧</div>", unsafe_allow_html=True)
+                col3, col4 = st.columns(2)
+                with col3:
+                     st.markdown(f"### <div style='color: #FFEBCC; text-align: center; '>Brand Account 🏢 {gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
+                with col4:
+                    st.markdown(f"### <div style='color: #7EA7FF; text-align: center;'>Boy 👦 {gender_pred[1]*100:.3g}%</div>", unsafe_allow_html=True)
+                
+                
             elif (gender_pred[1] > gender_pred[0]) and (gender_pred[1] > gender_pred[2]):
                 st.markdown("## <div style='color: #7EA7FF; text-align: center;'>Boy 👦</div>", unsafe_allow_html=True)
+                col3, col4 = st.columns(2)
+                with col3:
+                    st.markdown(f"### <div style='color: #F7A9FF; text-align: center;'>Girl 👧 {gender_pred[0]*100:.3g}%</div>", unsafe_allow_html=True)
+                with col4:
+                    st.markdown(f"### <div style='color: #FFEBCC; text-align: center; '>Brand Account 🏢 {gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
+                
+                
             else:
                 st.markdown("## <div style='color: #FFEBCC; text-align: center; '>Brand Account 🏢</div>", unsafe_allow_html=True)
                 col3, col4 = st.columns(2)
