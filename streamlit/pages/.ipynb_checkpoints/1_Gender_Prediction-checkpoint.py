@@ -93,97 +93,97 @@ with col2:
     with colb2:
         pred_button = st.button('Generate Prediction')
     if pred_button:
-        uppercase_count = sum(1 for char in name if char.isupper())
-        values[8] = uppercase_count
-        name_processed = re.sub('[^a-zA-Z0-9]', '', name).lower()
-        boc = vectorizer.transform([name_processed])
-        name_pred = name_model.predict(boc.toarray())[0]
-        values[0] = int(name_pred)
-        
-        values[1], values[2], values[3] = hex_to_rgb(color)
-        values[4] = favno
-        values[5] = tweets
-        
-        default_embedding = np.zeros(desc_w2v_model.vector_size)
-        
-        dtokens = gensim.utils.simple_preprocess(desc)
-        dlemmatized_tokens = [lemmatizer.lemmatize(token) for token in dtokens]
-        filtered_tokens_desc = [token for token in dlemmatized_tokens if token not in stop_words]
-        dembeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding
-                       for token in filtered_tokens_desc]
-        if len(dembeddings) > 0:
-            mean_desc_embed = np.mean(dembeddings, axis=0)
-        else: 
-            mean_desc_embed = default_embedding
+        with st.spinner('Wait for it...'):
+            uppercase_count = sum(1 for char in name if char.isupper())
+            values[8] = uppercase_count
+            name_processed = re.sub('[^a-zA-Z0-9]', '', name).lower()
+            boc = vectorizer.transform([name_processed])
+            name_pred = name_model.predict(boc.toarray())[0]
+            values[0] = int(name_pred)
 
-        desc_pred = desc_model.predict([mean_desc_embed])[0]
-        values[6] = desc_pred
-        
-        ttokens = gensim.utils.simple_preprocess(txt)
-        tlemmatized_tokens = [lemmatizer.lemmatize(token) for token in ttokens]
-        filtered_tokens_txt = [token for token in tlemmatized_tokens if token not in stop_words]
-        tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding
-                       for token in filtered_tokens_txt]
-        if len(tembeddings) > 0:
-            mean_text_embed = np.mean(tembeddings, axis=0)
-        else: 
-            mean_text_embed = default_embedding
+            values[1], values[2], values[3] = hex_to_rgb(color)
+            values[4] = favno
+            values[5] = tweets
 
-        text_pred = text_model.predict([mean_text_embed])[0]
-        values[7] = text_pred
-        
-        
-        if name and favno and tweets and desc and txt:
-            st.balloons()
-            data = {col_name: [value] for col_name, value in zip(col_names, values)}
-            desired_order = ['fav_number', 'text_pred', 'desc_pred',
-                             'name_pred', 'red_ratio', 'green_ratio',
-                             'blue_ratio', 'tweet_count', 'uppercase_count']
-            df = pd.DataFrame(data)
-            df = df.reindex(columns=desired_order)
-            gender_pred = final_model.predict_proba(df)[0]
-            
-            
-            if (gender_pred[0] > gender_pred[1]) and (gender_pred[0] > gender_pred[2]):
-                col5, col6 = st.columns([3,2])
-                with col5:
-                    st.markdown("## <div style='color: #F7A9FF; text-align: center;'>Girl 👧</div>", unsafe_allow_html=True)
-                with col6:
-                    st.markdown(f"## <div style='color: #F7A9FF; text-align: center; '>{gender_pred[0]*100:.3g}%</div>", unsafe_allow_html=True)
-                col3, col4 = st.columns(2)
-                with col3:
-                     st.markdown(f"### <div style='color: #FFEBCC; text-align: center; '>Brand 🏢 {gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
-                with col4:
-                    st.markdown(f"### <div style='color: #7EA7FF; text-align: center;'>Boy 👦 {gender_pred[1]*100:.3g}%</div>", unsafe_allow_html=True)
-                
-                
-            elif (gender_pred[1] > gender_pred[0]) and (gender_pred[1] > gender_pred[2]):
-                col5, col6 = st.columns([3,2])
-                with col5:
-                    st.markdown("## <div style='color: #7EA7FF; text-align: center;'>Boy 👦</div>", unsafe_allow_html=True)
-                with col6:
-                    st.markdown(f"## <div style='color: #7EA7FF; text-align: center; '>{gender_pred[1]*100:.3g}%</div>", unsafe_allow_html=True)
-                col3, col4 = st.columns(2)
-                with col3:
-                    st.markdown(f"### <div style='color: #F7A9FF; text-align: center;'>Girl 👧 {gender_pred[0]*100:.3g}%</div>", unsafe_allow_html=True)
-                with col4:
-                    st.markdown(f"### <div style='color: #FFEBCC; text-align: center; '>Brand 🏢 {gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
-                
-                
+            default_embedding = np.zeros(desc_w2v_model.vector_size)
+
+            dtokens = gensim.utils.simple_preprocess(desc)
+            dlemmatized_tokens = [lemmatizer.lemmatize(token) for token in dtokens]
+            filtered_tokens_desc = [token for token in dlemmatized_tokens if token not in stop_words]
+            dembeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding
+                           for token in filtered_tokens_desc]
+            if len(dembeddings) > 0:
+                mean_desc_embed = np.mean(dembeddings, axis=0)
+            else: 
+                mean_desc_embed = default_embedding
+
+            desc_pred = desc_model.predict([mean_desc_embed])[0]
+            values[6] = desc_pred
+
+            ttokens = gensim.utils.simple_preprocess(txt)
+            tlemmatized_tokens = [lemmatizer.lemmatize(token) for token in ttokens]
+            filtered_tokens_txt = [token for token in tlemmatized_tokens if token not in stop_words]
+            tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding
+                           for token in filtered_tokens_txt]
+            if len(tembeddings) > 0:
+                mean_text_embed = np.mean(tembeddings, axis=0)
+            else: 
+                mean_text_embed = default_embedding
+
+            text_pred = text_model.predict([mean_text_embed])[0]
+            values[7] = text_pred
+
+
+            if name and favno and tweets and desc and txt:
+                data = {col_name: [value] for col_name, value in zip(col_names, values)}
+                desired_order = ['fav_number', 'text_pred', 'desc_pred',
+                                 'name_pred', 'red_ratio', 'green_ratio',
+                                 'blue_ratio', 'tweet_count', 'uppercase_count']
+                df = pd.DataFrame(data)
+                df = df.reindex(columns=desired_order)
+                gender_pred = final_model.predict_proba(df)[0]
+
+                st.balloons()
+                if (gender_pred[0] > gender_pred[1]) and (gender_pred[0] > gender_pred[2]):
+                    col5, col6 = st.columns([3,2])
+                    with col5:
+                        st.markdown("## <div style='color: #F7A9FF; text-align: center;'>Girl 👧</div>", unsafe_allow_html=True)
+                    with col6:
+                        st.markdown(f"## <div style='color: #F7A9FF; text-align: center; '>{gender_pred[0]*100:.3g}%</div>", unsafe_allow_html=True)
+                    col3, col4 = st.columns(2)
+                    with col3:
+                         st.markdown(f"### <div style='color: #FFEBCC; text-align: center; '>Brand 🏢 {gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
+                    with col4:
+                        st.markdown(f"### <div style='color: #7EA7FF; text-align: center;'>Boy 👦 {gender_pred[1]*100:.3g}%</div>", unsafe_allow_html=True)
+
+
+                elif (gender_pred[1] > gender_pred[0]) and (gender_pred[1] > gender_pred[2]):
+                    col5, col6 = st.columns([3,2])
+                    with col5:
+                        st.markdown("## <div style='color: #7EA7FF; text-align: center;'>Boy 👦</div>", unsafe_allow_html=True)
+                    with col6:
+                        st.markdown(f"## <div style='color: #7EA7FF; text-align: center; '>{gender_pred[1]*100:.3g}%</div>", unsafe_allow_html=True)
+                    col3, col4 = st.columns(2)
+                    with col3:
+                        st.markdown(f"### <div style='color: #F7A9FF; text-align: center;'>Girl 👧 {gender_pred[0]*100:.3g}%</div>", unsafe_allow_html=True)
+                    with col4:
+                        st.markdown(f"### <div style='color: #FFEBCC; text-align: center; '>Brand 🏢 {gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
+
+
+                else:
+                    col5, col6 = st.columns([3,2])
+                    with col5:
+                        st.markdown("## <div style='color: #FFEBCC; text-align: center; '>Brand🏢</div>", unsafe_allow_html=True)
+                    with col6:
+                        st.markdown(f"## <div style='color: #FFEBCC; text-align: center; '>{gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
+                    col3, col4 = st.columns(2)
+                    with col3:
+                        st.markdown(f"### <div style='color: #F7A9FF; text-align: center;'>Girl 👧 {gender_pred[0]*100:.3g}%</div>", unsafe_allow_html=True)
+                    with col4:
+                        st.markdown(f"### <div style='color: #7EA7FF; text-align: center;'>Boy 👦 {gender_pred[1]*100:.3g}%</div>", unsafe_allow_html=True)
+
             else:
-                col5, col6 = st.columns([3,2])
-                with col5:
-                    st.markdown("## <div style='color: #FFEBCC; text-align: center; '>Brand🏢</div>", unsafe_allow_html=True)
-                with col6:
-                    st.markdown(f"## <div style='color: #FFEBCC; text-align: center; '>{gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
-                col3, col4 = st.columns(2)
-                with col3:
-                    st.markdown(f"### <div style='color: #F7A9FF; text-align: center;'>Girl 👧 {gender_pred[0]*100:.3g}%</div>", unsafe_allow_html=True)
-                with col4:
-                    st.markdown(f"### <div style='color: #7EA7FF; text-align: center;'>Boy 👦 {gender_pred[1]*100:.3g}%</div>", unsafe_allow_html=True)
-        
-        else:
-            st.error("Please fill in all the input fields.")
+                st.error("Please fill in all the input fields.")
 
         
 st.markdown("### LDA (Latent Dirichlet Allocation)")
