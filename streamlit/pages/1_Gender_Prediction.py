@@ -15,6 +15,12 @@ from collections import Counter
 import gensim
 from gensim.models import Word2Vec
 
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+import string
+
 st.set_page_config(page_title="Gender Prediction", page_icon="👫")
 
 st.sidebar.header("Predicting your Gender from viewing your profile.")
@@ -86,11 +92,14 @@ with col1:
     desc = st.text_area('Twitter description', placeholder='I love farming!')
     tokens = gensim.utils.simple_preprocess(desc)
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
-    filtered_tokens = [token for token in lemmatized_tokens if token not in stop_words]
-    st.write(filtered_tokens)
+    filtered_tokens_desc = [token for token in lemmatized_tokens if token not in stop_words]
+    st.write(filtered_tokens_desc)
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
+    tokens = gensim.utils.simple_preprocess(txt)
+    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
+    filtered_tokens_txt = [token for token in lemmatized_tokens if token not in stop_words]
     
 with col2:
     pred_button = st.button('Generate Prediction')
