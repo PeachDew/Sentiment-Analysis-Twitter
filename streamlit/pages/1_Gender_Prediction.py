@@ -140,9 +140,9 @@ with col2:
             df = df.reindex(columns=desired_order)
             st.dataframe(df)
             gender_pred = final_model.predict(df)
-            if gender_pred.value[0] == 0:
+            if gender_pred[0] == 0:
                 st.markdown("<span style='color: #F7A9FF;'>Girl</span>", unsafe_allow_html=True)
-            elif gender_pred.value[0] == 1:
+            elif gender_pred[0] == 1:
                 st.markdown("<span style='color: #7EA7FF;'>Boy</span>", unsafe_allow_html=True)
             else:
                 st.markdown("<span style='color: #FFEBCC;'>Brand Account</span>", unsafe_allow_html=True)
