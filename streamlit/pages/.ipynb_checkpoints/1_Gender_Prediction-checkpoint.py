@@ -106,7 +106,7 @@ with col1:
         mean_desc_embed = default_embedding
         
     desc_pred = desc_model.predict([mean_desc_embed])[0]
-    values[7] = desc_pred
+    values[6] = desc_pred
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
@@ -121,7 +121,7 @@ with col1:
         mean_text_embed = default_embedding
         
     text_pred = text_model.predict([mean_text_embed])[0]
-    values[8] = text_pred
+    values[7] = text_pred
 
     st.write(values)
    
@@ -131,7 +131,9 @@ with col2:
     if pred_button:
         if title and favno and tweets and desc and txt:
             st.balloons()
-            st.write("Prediction here")
+            data = {col_name: [value] for col_name, value in zip(col_names, values)}
+            df = pd.DataFrame(data)
+            st.dataframe(df)
         else:
             st.error("Please fill in all the input fields.")
 
