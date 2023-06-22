@@ -149,7 +149,7 @@ with col2:
                 with col3:
                     st.markdown("### <div style='color: #F7A9FF; text-align: center;'>Girl 👧</div>", unsafe_allow_html=True)
                 with col4:
-                    st.markdown(f"### <div style='color: #BA82FF; text-align: center;'>Girl 👧 {gender_pred[0]}</div>", unsafe_allow_html=True)
+                    st.markdown(f"### <div style='color: #BA82FF; text-align: center;'>{gender_pred[0]:.3g}</div>", unsafe_allow_html=True)
         
         else:
             st.error("Please fill in all the input fields.")
