@@ -77,7 +77,7 @@ with col1:
         name_processed = re.sub('[^a-zA-Z0-9]', '', name).lower()
         boc = vectorizer.transform([name_processed])
         name_pred = name_model.predict(boc.toarray())[0]
-        values[0] = name_pred
+        values[0] = int(name_pred)
         
         
     with cold:
@@ -122,8 +122,6 @@ with col1:
         
     text_pred = text_model.predict([mean_text_embed])[0]
     values[7] = text_pred
-
-    st.write(values)
    
     
 with col2:
