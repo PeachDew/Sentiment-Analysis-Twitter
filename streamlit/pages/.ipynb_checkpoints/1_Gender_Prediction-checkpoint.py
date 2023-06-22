@@ -15,7 +15,7 @@ st.set_page_config(page_title="Gender Prediction", page_icon="👫")
 
 st.sidebar.header("Predicting your Gender from viewing your profile.")
 st.markdown("""
-# Gender/Brand Prediction App 📱
+# Gender/Brand Prediction 📱
 This app utilizes machine learning to make predictions based on a Twitter user profile. Simply provide us with some information about a Twitter user, and we'll generate a prediction for you!
 """
 )
@@ -43,11 +43,11 @@ with col1:
                               placeholder = 'Twitter Username')
         uppercase_count = sum(1 for char in name if char.isupper())
         values[8] = uppercase_count
-        name_processed = name.replace('[^a-zA-Z0-9]', '', regex=True).lower()
+        name_processed = re.sub('[^a-zA-Z0-9]', '', name).lower()
         boc = vectorizer.transform([name_processed])
         name_pred = name_model.predict(boc.toarray())
         values[0] = name_pred
-        
+        st.write(name_processed)
         st.write(values)
     with cold:
         color = st.color_picker('Twitter Link Color', '#1DA1F2')
