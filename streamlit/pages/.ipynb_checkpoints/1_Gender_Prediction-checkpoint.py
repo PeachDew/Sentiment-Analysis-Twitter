@@ -141,11 +141,11 @@ with col2:
             st.dataframe(df)
             gender_pred = final_model.predict(df)
             if gender_pred[0] == 0:
-                st.markdown("<span style='color: #F7A9FF;'>Girl</span>", unsafe_allow_html=True)
+                st.markdown("## <span style='color: #F7A9FF; text-align: center;'>Girl</span>", unsafe_allow_html=True)
             elif gender_pred[0] == 1:
-                st.markdown("<span style='color: #7EA7FF;'>Boy</span>", unsafe_allow_html=True)
+                st.markdown("## <span style='color: #7EA7FF; text-align: center;'>Boy</span>", unsafe_allow_html=True)
             else:
-                st.markdown("<span style='color: #FFEBCC;'>Brand Account</span>", unsafe_allow_html=True)
+                st.markdown("## <span style='color: #FFEBCC; text-align: center; '>Brand Account</span>", unsafe_allow_html=True)
         else:
             st.error("Please fill in all the input fields.")
 
