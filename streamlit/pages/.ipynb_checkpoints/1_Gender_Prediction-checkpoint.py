@@ -75,6 +75,24 @@ with col1:
     with colc:
         name = st.text_input('Twitter Username', '',
                               placeholder = 'Twitter Username')
+    with cold:
+        color = st.color_picker('Link Color', '#1DA1F2')
+    
+    cola, colb = st.columns(2)
+    with cola:
+        favno = st.number_input('Favorite number', value=42)
+    with colb:
+        tweets = st.number_input('Number of tweets', value=500)                   
+    desc = st.text_area('Twitter description', placeholder='I love farming!')    
+
+    txt = st.text_area('Paste a random tweet from your account:',
+                       placeholder='Feelin good at the sunny beach B)')
+    
+with col2:
+    colb1, colb2, colb3 = st.columns([1,4,1])
+    with colb2:
+        pred_button = st.button('Generate Prediction')
+    if pred_button:
         uppercase_count = sum(1 for char in name if char.isupper())
         values[8] = uppercase_count
         name_processed = re.sub('[^a-zA-Z0-9]', '', name).lower()
@@ -82,56 +100,39 @@ with col1:
         name_pred = name_model.predict(boc.toarray())[0]
         values[0] = int(name_pred)
         
-        
-    with cold:
-        color = st.color_picker('Link Color', '#1DA1F2')
         values[1], values[2], values[3] = hex_to_rgb(color)
-    
-    cola, colb = st.columns(2)
-    with cola:
-        favno = st.number_input('Favorite number', value=42)
         values[4] = favno
-    with colb:
-        tweets = st.number_input('Number of tweets', value=500)
         values[5] = tweets
         
-    default_embedding = np.zeros(desc_w2v_model.vector_size)
-    
-    desc = st.text_area('Twitter description', placeholder='I love farming!')
-    dtokens = gensim.utils.simple_preprocess(desc)
-    dlemmatized_tokens = [lemmatizer.lemmatize(token) for token in dtokens]
-    filtered_tokens_desc = [token for token in dlemmatized_tokens if token not in stop_words]
-    dembeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding
-                   for token in filtered_tokens_desc]
-    if len(dembeddings) > 0:
-        mean_desc_embed = np.mean(dembeddings, axis=0)
-    else: 
-        mean_desc_embed = default_embedding
+        default_embedding = np.zeros(desc_w2v_model.vector_size)
         
-    desc_pred = desc_model.predict([mean_desc_embed])[0]
-    values[6] = desc_pred
+        dtokens = gensim.utils.simple_preprocess(desc)
+        dlemmatized_tokens = [lemmatizer.lemmatize(token) for token in dtokens]
+        filtered_tokens_desc = [token for token in dlemmatized_tokens if token not in stop_words]
+        dembeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding
+                       for token in filtered_tokens_desc]
+        if len(dembeddings) > 0:
+            mean_desc_embed = np.mean(dembeddings, axis=0)
+        else: 
+            mean_desc_embed = default_embedding
 
-    txt = st.text_area('Paste a random tweet from your account:',
-                       placeholder='Feelin good at the sunny beach B)')
-    ttokens = gensim.utils.simple_preprocess(txt)
-    tlemmatized_tokens = [lemmatizer.lemmatize(token) for token in ttokens]
-    filtered_tokens_txt = [token for token in tlemmatized_tokens if token not in stop_words]
-    tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding
-                   for token in filtered_tokens_txt]
-    if len(tembeddings) > 0:
-        mean_text_embed = np.mean(tembeddings, axis=0)
-    else: 
-        mean_text_embed = default_embedding
+        desc_pred = desc_model.predict([mean_desc_embed])[0]
+        values[6] = desc_pred
         
-    text_pred = text_model.predict([mean_text_embed])[0]
-    values[7] = text_pred
-   
-    
-with col2:
-    colb1, colb2, colb3 = st.columns([1,4,1])
-    with colb2:
-        pred_button = st.button('Generate Prediction')
-    if pred_button:
+        ttokens = gensim.utils.simple_preprocess(txt)
+        tlemmatized_tokens = [lemmatizer.lemmatize(token) for token in ttokens]
+        filtered_tokens_txt = [token for token in tlemmatized_tokens if token not in stop_words]
+        tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding
+                       for token in filtered_tokens_txt]
+        if len(tembeddings) > 0:
+            mean_text_embed = np.mean(tembeddings, axis=0)
+        else: 
+            mean_text_embed = default_embedding
+
+        text_pred = text_model.predict([mean_text_embed])[0]
+        values[7] = text_pred
+        
+        
         if name and favno and tweets and desc and txt:
             st.balloons()
             data = {col_name: [value] for col_name, value in zip(col_names, values)}
