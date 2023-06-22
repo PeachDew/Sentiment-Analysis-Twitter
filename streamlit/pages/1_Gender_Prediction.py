@@ -139,13 +139,13 @@ with col2:
                              'blue_ratio', 'tweet_count', 'uppercase_count']
             df = df.reindex(columns=desired_order)
             st.dataframe(df)
-            gender_pred = final_model.predict(df)
-            if gender_pred[0] == 0:
-                st.markdown("## <span style='color: #F7A9FF; text-align: center;'>Girl 👧</span>", unsafe_allow_html=True)
-            elif gender_pred[0] == 1:
-                st.markdown("## <span style='color: #7EA7FF; text-align: center;'>Boy 👦</span>", unsafe_allow_html=True)
+            gender_pred = final_model.predict_proba(df)
+            if (gender_pred[0] > gender_pred[1]) and (gender_pred[0] > gender_pred[2]):
+                st.markdown("## <div style='color: #F7A9FF; text-align: center;'>Girl 👧</div>", unsafe_allow_html=True)
+            elif (gender_pred[1] > gender_pred[0]) and (gender_pred[1] > gender_pred[2]):
+                st.markdown("## <div style='color: #7EA7FF; text-align: center;'>Boy 👦</div>", unsafe_allow_html=True)
             else:
-                st.markdown("## <span style='color: #FFEBCC; text-align: center; '>Brand Account 🏢</span>", unsafe_allow_html=True)
+                st.markdown("## <div style='color: #FFEBCC; text-align: center; '>Brand Account 🏢</div>", unsafe_allow_html=True)
         else:
             st.error("Please fill in all the input fields.")
 
