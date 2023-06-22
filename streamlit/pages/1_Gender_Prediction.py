@@ -100,7 +100,7 @@ with col1:
     tokens = gensim.utils.simple_preprocess(txt)
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
     filtered_tokens_txt = [token for token in lemmatized_tokens if token not in stop_words]
-    st.write(filtered_tokens_desc)
+    st.write(filtered_tokens_txt)
     
 with col2:
     pred_button = st.button('Generate Prediction')
