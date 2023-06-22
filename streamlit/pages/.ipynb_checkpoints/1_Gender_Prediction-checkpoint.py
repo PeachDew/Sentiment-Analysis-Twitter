@@ -156,7 +156,7 @@ with col2:
                     st.markdown(f"### <div style='color: #7EA7FF; text-align: center;'>Boy 👦 {gender_pred[1]*100:.3g}%</div>", unsafe_allow_html=True)
                 
                 
-            elif (gender_pred[2] > gender_pred[0]) and (gender_pred[2] > gender_pred[2]):
+            elif (gender_pred[1] > gender_pred[0]) and (gender_pred[1] > gender_pred[2]):
                 col5, col6 = st.columns([3,2])
                 with col5:
                     st.markdown("## <div style='color: #7EA7FF; text-align: center;'>Boy 👦</div>", unsafe_allow_html=True)
