@@ -136,8 +136,8 @@ with col2:
             desired_order = ['fav_number', 'text_pred', 'desc_pred',
                              'name_pred', 'red_ratio', 'green_ratio',
                              'blue_ratio', 'tweet_count', 'uppercase_count']
+            df = pd.DataFrame(data)
             df = df.reindex(columns=desired_order)
-            st.dataframe(df)
             gender_pred = final_model.predict_proba(df)[0]
             if (gender_pred[0] > gender_pred[1]) and (gender_pred[0] > gender_pred[2]):
                 st.markdown("## <div style='color: #F7A9FF; text-align: center;'>Girl 👧</div>", unsafe_allow_html=True)
