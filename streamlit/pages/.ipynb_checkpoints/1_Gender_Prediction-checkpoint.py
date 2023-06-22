@@ -95,21 +95,21 @@ with col1:
     default_embedding = np.zeros(desc_w2v_model.vector_size)
     
     desc = st.text_area('Twitter description', placeholder='I love farming!')
-    tokens = gensim.utils.simple_preprocess(desc)
-    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
-    filtered_tokens_desc = [token for token in lemmatized_tokens if token not in stop_words]
-    embeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
-    mean_desc_embed = np.mean(embeddings, axis=0)
+    dtokens = gensim.utils.simple_preprocess(desc)
+    dlemmatized_tokens = [lemmatizer.lemmatize(token) for token in dtokens]
+    filtered_tokens_desc = [token for token in dlemmatized_tokens if token not in stop_words]
+    dembeddings = [desc_w2v_model.wv[token] if token in desc_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
+    mean_desc_embed = np.mean(dembeddings, axis=0)
     
     st.write(mean_desc_embed)
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
-    tokens = gensim.utils.simple_preprocess(txt)
-    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
-    filtered_tokens_txt = [token for token in lemmatized_tokens if token not in stop_words]
-    embeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
-    mean_text_embed = np.mean(embeddings, axis=0)
+    ttokens = gensim.utils.simple_preprocess(txt)
+    tlemmatized_tokens = [lemmatizer.lemmatize(token) for token in ttokens]
+    filtered_tokens_txt = [token for token in tlemmatized_tokens if token not in stop_words]
+    tembeddings = [text_w2v_model.wv[token] if token in text_w2v_model.wv else default_embedding for token in filtered_tokens_desc]
+    mean_text_embed = np.mean(tembeddings, axis=0)
 
     st.write(mean_text_embed)
     
