@@ -172,7 +172,7 @@ with col2:
             else:
                 col5, col6 = st.columns([3,2])
                 with col5:
-                    st.markdown("### <div style='color: #FFEBCC; text-align: center; '>Brand🏢</div>", unsafe_allow_html=True)
+                    st.markdown("## <div style='color: #FFEBCC; text-align: center; '>Brand🏢</div>", unsafe_allow_html=True)
                 with col6:
                     st.markdown(f"## <div style='color: #FFEBCC; text-align: center; '>{gender_pred[2]*100:.3g}%</div>", unsafe_allow_html=True)
                 col3, col4 = st.columns(2)
