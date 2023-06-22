@@ -114,6 +114,7 @@ with col1:
     mean_text_embed = np.mean(tembeddings, axis=0)
 
     st.write(mean_text_embed)
+    st.write(filtered_tokens_txt)
     
 with col2:
     pred_button = st.button('Generate Prediction')
