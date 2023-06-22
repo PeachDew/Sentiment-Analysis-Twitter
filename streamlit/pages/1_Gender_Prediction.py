@@ -50,7 +50,7 @@ with open("./Gender_Model_Save/final_model.pkl", "rb") as file:
 
 col_names = ['name_pred','red_ratio','green_ratio',
              'blue_ratio','fav_number','tweet_count',
-             'desc_pred','pred_pred','uppercase_count']
+             'desc_pred','text_pred','uppercase_count']
 
         
 
@@ -140,7 +140,7 @@ with col2:
             df = df.reindex(columns=desired_order)
             st.dataframe(df)
             gender_pred = final_model.predict(df)
-            st.write(gender_pred)
+            st.write(gender_pred[0])
         else:
             st.error("Please fill in all the input fields.")
 
