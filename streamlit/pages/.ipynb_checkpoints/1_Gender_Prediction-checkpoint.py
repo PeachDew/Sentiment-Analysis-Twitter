@@ -44,6 +44,8 @@ with open("./Gender_Model_Save/desc_w2v_model.pkl", "rb") as file:
     desc_w2v_model = pickle.load(file)
 with open("./Gender_Model_Save/text_w2v_model.pkl", "rb") as file:
     text_w2v_model = pickle.load(file)    
+with open("./Gender_Model_Save/final_model.pkl", "rb") as file:
+    final_model = pickle.load(file)      
 
 col_names = ['name_pred','red_ratio','green_ratio',
              'blue_ratio','fav_number','tweet_count',
@@ -132,6 +134,8 @@ with col2:
             data = {col_name: [value] for col_name, value in zip(col_names, values)}
             df = pd.DataFrame(data)
             st.dataframe(df)
+            gender_pred = final_model.predict(df)
+            st.write(gender_pred)
         else:
             st.error("Please fill in all the input fields.")
 
