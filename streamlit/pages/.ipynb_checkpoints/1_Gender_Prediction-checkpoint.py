@@ -9,6 +9,7 @@ import re
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import HistGradientBoostingClassifier
+from catboost import CatBoostClassifier
 from sklearn.metrics import accuracy_score
 import re
 from collections import Counter
