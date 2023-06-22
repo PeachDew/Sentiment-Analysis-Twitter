@@ -57,9 +57,6 @@ def predict_tweet_probability(tweet, model):
     probability = model.predict_proba(transformed_tweet)[:, 1]
     return probability[0]
 
-
-st.markdown('## Tweet Prediction')
-
 col1, col2 = st.columns(2)
 with col1:
     st.markdown('### Tweet Away 👇')
