@@ -1,5 +1,6 @@
 scikit-learn
 webcolors
+gensim
 nltk>=3.8.1
 seaborn>=0.12.2
 matplotlib>=3.7.1

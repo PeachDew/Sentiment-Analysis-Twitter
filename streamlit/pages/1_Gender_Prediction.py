@@ -12,6 +12,9 @@ from sklearn.metrics import accuracy_score
 import re
 from collections import Counter
 
+import gensim
+from gensim.models import Word2Vec
+
 st.set_page_config(page_title="Gender Prediction", page_icon="👫")
 
 st.sidebar.header("Predicting your Gender from viewing your profile.")
@@ -48,6 +51,9 @@ def hex_to_rgb(hex_code):
     ratios = [comp / sum_rgb for comp in rgb]
     return ratios
 
+stop_words = set(stopwords.words('english'))
+lemmatizer = WordNetLemmatizer()
+
 values = [None for i in range(len(col_names))]
 col1, col2 = st.columns(2)
 with col1:
@@ -66,15 +72,22 @@ with col1:
     with cold:
         color = st.color_picker('Twitter Link Color', '#1DA1F2')
         values[1], values[2], values[3] = hex_to_rgb(color)
-        st.write(values)
     
     cola, colb = st.columns(2)
     with cola:
         favno = st.number_input('Favorite number', value=42)
+        values[4] = favno
     with colb:
         tweets = st.number_input('Number of tweets', value=500)
+        values[5] = tweets
+        
+    
 
     desc = st.text_area('Twitter description', placeholder='I love farming!')
+    tokens = gensim.utils.simple_preprocess(desc)
+    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
+    filtered_tokens = [token for token in lemmatized_tokens if token not in stop_words]
+    st.write(filtered_tokens)
 
     txt = st.text_area('Paste a random tweet from your account:',
                        placeholder='Feelin good at the sunny beach B)')
