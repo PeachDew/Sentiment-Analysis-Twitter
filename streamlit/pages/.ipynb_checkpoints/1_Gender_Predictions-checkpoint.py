@@ -47,12 +47,7 @@ with open("./Gender_Model_Save/text_w2v_model.pkl", "rb") as file:
     text_w2v_model = pickle.load(file)    
 with open("./Gender_Model_Save/final_model.pkl", "rb") as file:
     final_model = pickle.load(file)    
-with open("./Gender_Model_Save/final_df.pkl", "rb") as file:
-    final_df = pickle.load(file)     
-with open("./Gender_Model_Save/final_y.pkl", "rb") as file:
-    final_y = pickle.load(file)       
-    
-final_df['gender'] = final_y    
+
 
 col_names = ['name_pred','red_ratio','green_ratio',
              'blue_ratio','fav_number','tweet_count',
@@ -192,6 +187,36 @@ with col2:
                 st.error("Please fill in all the input fields.")
 
 
+st.markdown("## How it works 😋")
+st.markdown('''
+### Text Preprocessing 🪚
+Here are various techniques I used to prepare the text data for further analysis. This involved several key steps:
+
+- Tokenization: Dividing text into individual tokens or words.
+''')
+st.code(''' "I ate a book!" --> "I" "ate" "a" "book!" ''')
+st.markdown('''            
+- Lowercasing: Converting all text to lowercase to ensure consistency and reduce the impact of case sensitivity.
+''')
+st.code('''"I" "ate" "a" "book!" --> "i" "ate" "a" "book!"''')
+st.markdown('''     
+- Lemmatization: Reducing words to their base or dictionary form, such as converting 'running' to 'run'.
+''')
+st.code('''"i" "ate" "a" "book!" --> "i" "eat" "a" "book!"''')
+st.markdown('''     
+Removing Stop Words: Eliminating common stop words from the text, such as 'the', 'and', and 'is', which do not contribute significant meaning to the analysis. List of words included in nltk's stopwords can be found [here](https://gist.github.com/sebleier/554280).
+''')
+st.code('''"i" "eat" "a" "book!" --> "eat" "book!"''')
+st.markdown('''     
+- Removing Special Characters: Eliminate non-alphanumeric characters, symbols, and punctuation marks to focus on the essential textual content.
+''')
+st.code('''"eat" "book!" --> "eat" "book"''')
+st.markdown('''     
+These steps helped to clean and standardize the text data.
+''')
+
+st.markdown("## The Data: Columns, Classes 😋")
+#st.dataframe(final_df.head(10))
 
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
