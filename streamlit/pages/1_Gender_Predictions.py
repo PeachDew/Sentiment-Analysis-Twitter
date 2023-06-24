@@ -193,25 +193,25 @@ st.markdown('''
 We employed various techniques to prepare the text data for further analysis. This involved several key steps:
 
 - Tokenization: We divided the text into individual tokens or words to facilitate further processing.
-'''
+''')
 st.code(''' "I ate a book!" --> "I" "ate" "a" "book!" ''')            
 st.markdown('''            
 - Lowercasing: We converted all text to lowercase to ensure consistency and reduce the impact of case sensitivity.
-'''
+''')
 st.code('''"I" "ate" "a" "book!" --> "i" "ate" "a" "book!"''')            
 st.markdown('''     
 - Lemmatization: We applied lemmatization techniques to reduce words to their base or dictionary form, such as converting 'running' to 'run'.
-'''
+''')
 st.code('''"i" "ate" "a" "book!" --> "i" "eat" "a" "book!"''')            
 st.markdown('''     
 Removing Stop Words: We eliminated common stop words from the text, such as 'the', 'and', and 'is', which do not contribute significant meaning to the analysis. List of words included in nltk's stopwords can be found here.
-'''
+''')
 st.code('''"i" "eat" "a" "book!" --> "eat" "book!"''')            
 st.markdown('''     
 - Removing Special Characters: We eliminated non-alphanumeric characters, symbols, and punctuation marks to focus on the essential textual content.
 - Handling Contractions: We expanded contractions to their full forms for 
 better analysis and understanding.
-'''
+''')
 st.code('''"eat" "book!" --> "eat" "book"''')            
 st.markdown('''     
 These preprocessing steps helped us clean and standardize the text data, making it more suitable for subsequent natural language processing tasks.
