@@ -275,6 +275,8 @@ Here is a video that helped me understand how Word2Vec works:
 st.video("https://www.youtube.com/watch?v=viZrOnJclY0")
 
 st.markdown("### Putting it all together")
+st.markdown("Here is how the final dataframe looks like:")
+st.dataframe(final_df)
 st.markdown('''Lastly, I tuned a catboost model using Random Search using the simple code shown below. To cover more iterations I decided against K-fold CV and used a simple validation set. "cat_features" indicates the parameters to be treated as categorical, and loss_function='MultiClass' is set for classification tasks like this one.''')
 st.code('''
 param_grid = {
