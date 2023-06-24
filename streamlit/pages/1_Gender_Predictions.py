@@ -264,7 +264,8 @@ with color2:
                 st.error("Please fill in all the input fields.")
 st.markdown('''
 ### Numerical Features:
-Favorite number, Tweet count, and Uppercase count #️⃣''')
+### Favorite number, Tweet count, and Uppercase count #️⃣
+I considered using one-hot encoding for favorite number, as numbers can have character. For example 7 being known as a lucky number, or 42 being the meaning of life, or 13 being an unlucky number. However, I decided against it as it would increase the dimensionality substantially, and there might still be patterns between the magnitude of the number and the 3 classes. Uppercase count, a simple count of uppercase characters of a username is a simple engineered feature, and tweet count can be inputs to a ML model as they are.''')
 
 st.markdown("### Text Features: Sample Tweet, Bio, and Username 🔤")
 
