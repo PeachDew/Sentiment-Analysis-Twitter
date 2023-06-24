@@ -277,7 +277,7 @@ st.video("https://www.youtube.com/watch?v=viZrOnJclY0")
 st.markdown("### Putting it all together")
 st.markdown("Here is how the final dataframe looks like:")
 st.dataframe(final_df)
-st.markdown('''Lastly, I tuned a catboost model using Random Search using the simple code shown below. To cover more iterations I decided against K-fold CV and used a simple validation set. "cat_features" indicates the parameters to be treated as categorical, and loss_function='MultiClass' is set for classification tasks like this one.''')
+st.markdown('''As you can see, we have 3 prediction columns, and 3 ratio columns for the colors. Finally, I tuned a catboost model using Random Search using the simple code shown below. To cover more iterations I decided against K-fold CV and used a simple validation set. "cat_features" indicates the parameters to be treated as categorical, and loss_function='MultiClass' is set for classification tasks like this one.''')
 st.code('''
 param_grid = {
     'learning_rate': np.linspace(0.01, 0.1, 40),
