@@ -259,8 +259,8 @@ with color2:
                 cr1, cr2, cr3 = st.columns(3)
                 
                 data = {'Red ratio':r, 'Green ratio':g, 'Blue ratio':b}
-                col_df = pd.dataframe(data)
-                st.DataFrame(col_df)
+                col_df = pd.DataFrame(data)
+                st.dataframe(col_df)
                 with cr1:
                     st.write(f"Red ratio: {r*100:.1f}%")
                 with cr2:
