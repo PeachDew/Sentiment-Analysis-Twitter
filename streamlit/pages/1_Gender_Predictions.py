@@ -5,6 +5,7 @@ import pandas as pd
 import pickle
 import webcolors
 import re
+import matplotlib.pyplot as plt
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -222,12 +223,35 @@ st.code('''"eat" "book!" --> "eat" "book"''')
 st.markdown('''     
 These steps helped to clean and standardize the text data.
 ''')
-st.markdown("## The Data: Columns, Classes 📊")
+st.markdown("## The Data: Columns, and Classes 📊")
 final_df = final_df[['gender'] + list(final_df.columns[:-1])]
 colns = ['gender','fav_number','text','description','name','red_ratio', 'green_ratio','blue_ratio','tweet_count','uppercase_count']
 st.markdown('''
 We have the target variable in the first column, 'gender' with 3 possible values: 0 for female, 1 for male, and 2 for brand.''')
 st.dataframe(full_df[colns].head(10))
+
+st.markdown("### Dealing with Twitter Link color 🎨")
+st.markdown('''
+I first convert the color in hexadecimal to its corresponding RGB values. Then, to incorporate some form of interaction between the three terms, I used the ratio of a color among all 3 RGB colors. Below we have a simple example of the process.''')
+color1, color2 = st.columns(2)
+with color1:
+    color_demo = st.color_picker('Link Color', '#1DA1F2')
+with color2:
+    if color_demo:
+        r, g, b = hex_to_rgb(color)
+        cr1, cr2, cr3 = columns(3)
+        with cr1:
+            st.write(f"Red ratio: {r}")
+        with cr2:
+            st.write(f"Green ratio: {g}")
+        with cr3:
+            st.write(f"Blue ratio: {b}")
+        y = np.array([r,g,b])
+        mylabels = ["Red", "Green", "Blue"]
+        plt.pie(y, labels = mylabels)
+        st.pyplot(plt)    
+    else:
+        st.error("Please fill in all the input fields.")
 
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
