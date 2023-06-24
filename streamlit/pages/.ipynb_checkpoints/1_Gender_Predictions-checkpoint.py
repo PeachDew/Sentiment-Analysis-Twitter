@@ -269,8 +269,10 @@ I considered using one-hot encoding for favorite number, as numbers can have cha
 Uppercase count, a simple count of uppercase characters of a username is a simple engineered feature, and tweet count can be inputs to a ML model as they are.''')
 
 st.markdown('''### Text Features: Sample Tweet, Bio, and Username 🔤
-I decided to use Word2Vec representations of these text fields, and train 3 separate models on the 3 categories alone. I then used said models to predict on the train data to obtain their own predictions.
+To leverage the semantic meaning of the text fields, Word2Vec was employed to create word/character embeddings. Three separate models were trained, each dedicated to one of the categories, allowing for the capture of unique patterns and characteristics within the text data. These models were then utilized to predict the target variable on the training data, generating individual predictions for each category.
+Here is a video that helped me understand how Word2Vec works:
 ''')
+st.video("https://www.youtube.com/watch?v=viZrOnJclY0")
 
 st.markdown("### Putting it all together")
 st.markdown('''Lastly, I tuned a catboost model using Random Search using the simple code shown below. To cover more iterations I decided against K-fold CV and used a simple validation set. "cat_features" indicates the parameters to be treated as categorical, and loss_function='MultiClass' is set for classification tasks like this one.''')
