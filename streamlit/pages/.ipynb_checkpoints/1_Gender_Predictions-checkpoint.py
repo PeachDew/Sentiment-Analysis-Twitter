@@ -257,7 +257,7 @@ with color2:
                 
                 data = [{'Red ratio': r, 'Green ratio': g, 'Blue ratio': b}]
                 col_df = pd.DataFrame(data)
-                st.dataframe(col_df.head)   
+                st.dataframe(col_df.head())   
             else:
                 st.error("Please fill in all the input fields.")
 
