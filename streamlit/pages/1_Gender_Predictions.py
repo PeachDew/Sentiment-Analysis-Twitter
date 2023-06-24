@@ -224,7 +224,6 @@ These steps helped to clean and standardize the text data.
 ''')
 st.markdown("## The Data: Columns, Classes 📊")
 final_df = final_df[['gender'] + list(final_df.columns[:-1])]
-full_df = full_df[['gender'] + list(full_df.columns[:-1])]
 st.markdown('''
 We have the target variable in the first column, 'gender' with 3 possible values: 0 for female, 1 for male, and 2 for brand.''')
 st.dataframe(full_df.head(10))
