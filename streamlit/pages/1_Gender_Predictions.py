@@ -249,8 +249,8 @@ with color2:
         y = np.array([r,g,b])
         mylabels = ["Red", "Green", "Blue"]
         mycolors = ["red", "green", "blue"]
-        fig = plt.pie(y, labels = mylabels, colors = mycolors)
-        st.pyplot(fig)    
+        plt.pie(y, labels = mylabels, colors = mycolors)
+        st.pyplot(plt)    
     else:
         st.error("Please fill in all the input fields.")
 
