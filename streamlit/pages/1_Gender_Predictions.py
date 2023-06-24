@@ -244,7 +244,6 @@ with color2:
         if col_button:
             r, g, b = hex_to_rgb(color)
             y = np.array([r,g,b])
-            mylabels = ["Red", "Green", "Blue"]
             mycolors = ["red", "green", "blue"]
             fig, ax = plt.subplots(figsize = (0.2,0.2))
             ax.grid(False)
@@ -256,17 +255,9 @@ with color2:
             if color_demo:
                 r, g, b = hex_to_rgb(color)
                 
-                cr1, cr2, cr3 = st.columns(3)
-                
                 data = [{'Red ratio': r, 'Green ratio': g, 'Blue ratio': b}]
                 col_df = pd.DataFrame(data)
-                st.dataframe(col_df)
-                with cr1:
-                    st.write(f"Red ratio: {r*100:.1f}%")
-                with cr2:
-                    st.write(f"Green ratio: {g*100:.1f}%")
-                with cr3:
-                    st.write(f"Blue ratio: {b*100:.1f}%")    
+                st.dataframe(col_df.head)   
             else:
                 st.error("Please fill in all the input fields.")
 
