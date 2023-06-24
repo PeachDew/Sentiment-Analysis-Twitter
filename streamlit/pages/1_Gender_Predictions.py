@@ -246,7 +246,7 @@ with color2:
             y = np.array([r,g,b])
             mylabels = ["Red", "Green", "Blue"]
             mycolors = ["red", "green", "blue"]
-            fig, ax = plt.subplots(figsize = (2,2))
+            fig, ax = plt.subplots(figsize = (0.5,0.5))
             ax.grid(False)
             plt.pie(y, labels = mylabels, colors = mycolors)
             fig.patch.set_alpha(0)
@@ -255,7 +255,12 @@ with color2:
         with st.spinner('Wait for it...'):
             if color_demo:
                 r, g, b = hex_to_rgb(color)
+                
                 cr1, cr2, cr3 = st.columns(3)
+                
+                data = {'Red ratio':r, 'Green ratio':g, 'Blue ratio':b}
+                col_df = pd.df(data)
+                st.dataframe(col_df)
                 with cr1:
                     st.write(f"Red ratio: {r*100:.1f}%")
                 with cr2:
