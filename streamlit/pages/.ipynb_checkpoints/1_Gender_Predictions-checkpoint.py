@@ -255,7 +255,7 @@ with color2:
                 fig, ax = plt.subplots(figsize = (5,5))
                 ax.grid(False)
                 plt.pie(y, labels = mylabels, colors = mycolors)
-                fig.set_facecolor('lightgrey',alpha=0)
+                fig.set_alpha(0.5)
                 st.pyplot(plt)    
             else:
                 st.error("Please fill in all the input fields.")
