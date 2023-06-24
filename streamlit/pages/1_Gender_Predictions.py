@@ -220,7 +220,10 @@ st.code('''"eat" "book!" --> "eat" "book"''')
 st.markdown('''     
 These steps helped to clean and standardize the text data.
 ''')
-st.markdown("## The Data: Columns, Classes 😋")
+st.markdown("## The Data: Columns, Classes 📊")
+final_df = final_df[['gender'] + list(final_df.columns[:-1])]
+st.markdown('''
+We have the target variable in the first column, 'gender' with 3 possible values: 0:female, 1:male, 2:brand.''')
 st.dataframe(final_df.head(10))
 
 
