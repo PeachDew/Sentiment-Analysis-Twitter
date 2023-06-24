@@ -265,11 +265,69 @@ with color2:
 st.markdown('''
 ### Numerical Features:
 ### Favorite number, Tweet count, and Uppercase count #️⃣
-I considered using one-hot encoding for favorite number, as numbers can have character. For example 7 being known as a lucky number, or 42 being the meaning of life, or 13 being an unlucky number. However, I decided against it as it would increase the dimensionality substantially, and there might still be patterns between the magnitude of the number and the 3 classes. Uppercase count, a simple count of uppercase characters of a username is a simple engineered feature, and tweet count can be inputs to a ML model as they are.''')
+I considered using one-hot encoding for favorite number, as numbers can have character. For example 7 being known as a lucky number, or 42 being the meaning of life, or 13 being an unlucky number. However, I decided against it as it would increase the dimensionality substantially, and there might still be patterns between the magnitude of the number and the target. 
+Uppercase count, a simple count of uppercase characters of a username is a simple engineered feature, and tweet count can be inputs to a ML model as they are.''')
 
-st.markdown("### Text Features: Sample Tweet, Bio, and Username 🔤")
+st.markdown('''### Text Features: Sample Tweet, Bio, and Username 🔤
+I decided to use Word2Vec representations of these text fields, and train 3 separate models on the 3 categories alone. I then used said models to predict on the train data to obtain their own predictions.
+''')
 
 st.markdown("### Putting it all together")
+st.markdown('''Lastly, I tuned a catboost model using Random Search using the simple code shown below. To cover more iterations I decided against K-fold CV and used a simple validation set. "cat_features" indicates the parameters to be treated as categorical, and loss_function='MultiClass' is set for a classification task like this one.''')
+st.code('''
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from tqdm import tqdm
+
+param_grid = {
+    'learning_rate': np.linspace(0.01, 0.1, 40),
+    'depth': list(range(6, 10)),
+    'l2_leaf_reg': list(range(2, 20)),
+    'iterations': [500],
+    'early_stopping_rounds': [20],
+    'thread_count': [-1]
+}
+
+X_train, X_val, y_train, y_val = train_test_split(final_df_train, final_train_y, test_size=0.1, random_state=42)
+
+best_score = 0
+top_models = []
+
+num_iterations = 50
+tqdm._instances.clear()
+progress_bar = tqdm(total=num_iterations, desc='RandomizedSearchCV')
+
+for _ in range(num_iterations):
+    # randomly sample hyperparameters
+    params = {param: np.random.choice(values) for param, values in param_grid.items()}
+    
+    catboost_model = CatBoostClassifier(cat_features=[1,2,3],
+                                        loss_function='MultiClass', 
+                                        **params)
+    catboost_model.fit(X_train, y_train, verbose=False)
+    
+    # evaluate
+    val_predictions = catboost_model.predict(X_val)
+    score = accuracy_score(y_val, val_predictions)
+    
+    # update
+    if score > best_score:
+        best_score = score
+        best_model = catboost_model
+    
+    # store the model and parameters
+    top_models.append((catboost_model, params, score))
+    
+    progress_bar.update(1)
+
+progress_bar.close()
+
+# Sort the models based on the scores
+top_models.sort(key=lambda x: x[2], reverse=True)
+
+print("Best Model:", best_model)
+print("Best Score:", best_score)
+print("Best Hyperparameters:", best_model.get_params())''', language='python')
 
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
