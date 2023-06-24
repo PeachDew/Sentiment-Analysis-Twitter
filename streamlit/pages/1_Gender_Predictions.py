@@ -228,7 +228,7 @@ final_df = final_df[['gender'] + list(final_df.columns[:-1])]
 colns = ['gender','fav_number','text','description','name','red_ratio', 'green_ratio','blue_ratio','tweet_count','uppercase_count']
 st.markdown('''
 We have the target variable in the first column, 'gender' with 3 possible values: 0 for female, 1 for male, and 2 for brand.''')
-st.dataframe(full_df[colns].head(10))
+st.dataframe(full_df[colns].head(10),hide_index=True)
 
 st.markdown("### Dealing with Twitter Link color 🎨")
 st.markdown('''
@@ -259,7 +259,7 @@ with color2:
                 
                 data = [{'Red ratio': r, 'Green ratio': g, 'Blue ratio': b}]
                 col_df = pd.DataFrame(data)
-                st.dataframe(col_df.head())   
+                st.dataframe(col_df.head(), hide_index=True)   
             else:
                 st.error("Please fill in all the input fields.")
 st.markdown('''
