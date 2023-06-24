@@ -237,27 +237,31 @@ color1, color2 = st.columns(2)
 with color1:
     color_demo = st.color_picker('Link Color', '#1DA1F2', key = 42)
 with color2:
-    col_button = st.button('Get Ratios')
+    crr1, crr2 = st.columns(2)
+    with crr1:
+        col_button = st.button('Get Ratios')
+    with crr2:
+        if col_button:
+            r, g, b = hex_to_rgb(color)
+            y = np.array([r,g,b])
+            mylabels = ["Red", "Green", "Blue"]
+            mycolors = ["red", "green", "blue"]
+            fig, ax = plt.subplots(figsize = (5,5))
+            ax.grid(False)
+            plt.pie(y, labels = mylabels, colors = mycolors)
+            fig.patch.set_alpha(0)
+            st.pyplot(plt)
     if col_button:
         with st.spinner('Wait for it...'):
             if color_demo:
                 r, g, b = hex_to_rgb(color)
-                cr1, cr2, cr3, cr4 = st.columns([3,3,3,1])
+                cr1, cr2, cr3, cr4 = st.columns(3)
                 with cr1:
-                    st.write(f"Red ratio: {r:.3f}")
+                    st.write(f"Red ratio: {r*100:.1f}%")
                 with cr2:
-                    st.write(f"Green ratio: {g:.3f}")
+                    st.write(f"Green ratio: {g*100:.1f}%")
                 with cr3:
-                    st.write(f"Blue ratio: {b:.3f}")
-                with cr4:
-                    y = np.array([r,g,b])
-                    mylabels = ["Red", "Green", "Blue"]
-                    mycolors = ["red", "green", "blue"]
-                    fig, ax = plt.subplots(figsize = (5,5))
-                    ax.grid(False)
-                    plt.pie(y, labels = mylabels, colors = mycolors)
-                    fig.patch.set_alpha(0)
-                    st.pyplot(plt)    
+                    st.write(f"Blue ratio: {b*100:.1f}%")    
             else:
                 st.error("Please fill in all the input fields.")
 
