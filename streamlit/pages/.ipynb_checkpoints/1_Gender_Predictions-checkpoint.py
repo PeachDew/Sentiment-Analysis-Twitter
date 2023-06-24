@@ -241,11 +241,11 @@ with color2:
         r, g, b = hex_to_rgb(color)
         cr1, cr2, cr3 = st.columns(3)
         with cr1:
-            st.write(f"Red ratio: {r:.3d}")
+            st.write(f"Red ratio: {r:.3f}")
         with cr2:
-            st.write(f"Green ratio: {g:.3d}")
+            st.write(f"Green ratio: {g:.3f}")
         with cr3:
-            st.write(f"Blue ratio: {b:.3d}")
+            st.write(f"Blue ratio: {b:.3f}")
         y = np.array([r,g,b])
         mylabels = ["Red", "Green", "Blue"]
         mycolors = ["red", "green", "blue"]
