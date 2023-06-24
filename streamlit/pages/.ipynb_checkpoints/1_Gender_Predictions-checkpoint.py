@@ -242,25 +242,22 @@ with color2:
         with st.spinner('Wait for it...'):
             if color_demo:
                 r, g, b = hex_to_rgb(color)
-                crr1, crr2 = st.columns([5,1])
-                with crr1:
-                    cr1, cr2, cr3 = st.columns(3)
-                    with cr1:
-                        st.write(f"Red ratio: {r:.3f}")
-                    with cr2:
-                        st.write(f"Green ratio: {g:.3f}")
-                    with cr3:
-                        st.write(f"Blue ratio: {b:.3f}")
-                with crr2:
+                cr1, cr2, cr3, cr4 = st.columns([2,2,2,1])
+                with cr1:
+                    st.write(f"Red ratio: {r:.3f}")
+                with cr2:
+                    st.write(f"Green ratio: {g:.3f}")
+                with cr3:
+                    st.write(f"Blue ratio: {b:.3f}")
+                with cr4:
                     y = np.array([r,g,b])
                     mylabels = ["Red", "Green", "Blue"]
                     mycolors = ["red", "green", "blue"]
-                    fig, ax = plt.subplots(figsize = (2,2))
+                    fig, ax = plt.subplots(figsize = (1,1))
                     ax.grid(False)
                     plt.pie(y, labels = mylabels, colors = mycolors)
                     fig.patch.set_alpha(0)
-                    st.pyplot(plt)  
-                    
+                    st.pyplot(plt)    
             else:
                 st.error("Please fill in all the input fields.")
 
