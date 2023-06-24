@@ -252,6 +252,8 @@ with color2:
                 y = np.array([r,g,b])
                 mylabels = ["Red", "Green", "Blue"]
                 mycolors = ["red", "green", "blue"]
+                fig, ax = plt.subplots(figsize = (5,5))
+                ax.grid(False)
                 plt.pie(y, labels = mylabels, colors = mycolors)
                 fig.set_facecolor('lightgrey',alpha=0)
                 st.pyplot(plt)    
