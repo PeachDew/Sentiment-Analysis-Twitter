@@ -245,11 +245,12 @@ with color2:
             r, g, b = hex_to_rgb(color)
             y = np.array([r,g,b])
             mycolors = ["red", "green", "blue"]
-            fig, ax = plt.subplots(figsize = (0.2,0.2))
             ax.grid(False)
-            plt.pie(y, colors = mycolors)
-            fig.patch.set_alpha(0)
-            st.pyplot(plt)
+            plt.pie(y, colors=mycolors)
+            fig.set_facecolor("none")
+            plt.axis("equal")  # Ensure the pie chart is circular
+            plt.savefig("plot.png", dpi=300, transparent=True, bbox_inches="tight")
+            st.image("plot.png", use_column_width=True)
     if col_button:
         with st.spinner('Wait for it...'):
             if color_demo:
