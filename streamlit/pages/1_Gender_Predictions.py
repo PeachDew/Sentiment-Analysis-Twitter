@@ -248,7 +248,9 @@ with color2:
             st.write(f"Blue ratio: {b}")
         y = np.array([r,g,b])
         mylabels = ["Red", "Green", "Blue"]
-        plt.pie(y, labels = mylabels)
+        mycolors = ["red", "green", "blue"]
+        plt.pie(y, labels = mylabels, colors = mycolors)
+        plt.gca().set_facecolor('none')
         st.pyplot(plt)    
     else:
         st.error("Please fill in all the input fields.")
