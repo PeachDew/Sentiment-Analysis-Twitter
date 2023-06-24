@@ -275,10 +275,6 @@ I decided to use Word2Vec representations of these text fields, and train 3 sepa
 st.markdown("### Putting it all together")
 st.markdown('''Lastly, I tuned a catboost model using Random Search using the simple code shown below. To cover more iterations I decided against K-fold CV and used a simple validation set. "cat_features" indicates the parameters to be treated as categorical, and loss_function='MultiClass' is set for a classification task like this one.''')
 st.code('''
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from tqdm import tqdm
-
 param_grid = {
     'learning_rate': np.linspace(0.01, 0.1, 40),
     'depth': list(range(6, 10)),
@@ -328,6 +324,7 @@ top_models.sort(key=lambda x: x[2], reverse=True)
 print("Best Model:", best_model)
 print("Best Score:", best_score)
 print("Best Hyperparameters:", best_model.get_params())''', language='python')
+st.markdown("Click the github symbol at the top right of the page to view the full code available on my github repo! 😊")
 
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
