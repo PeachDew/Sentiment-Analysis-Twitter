@@ -250,8 +250,6 @@ with color2:
         mylabels = ["Red", "Green", "Blue"]
         mycolors = ["red", "green", "blue"]
         fig = plt.pie(y, labels = mylabels, colors = mycolors)
-        fig.patch.set_facecolor('black')
-        fig.patch.set_alpha(1)
         st.pyplot(fig)    
     else:
         st.error("Please fill in all the input fields.")
