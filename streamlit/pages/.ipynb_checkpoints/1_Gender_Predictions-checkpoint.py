@@ -235,7 +235,7 @@ st.markdown('''
 I first convert the color in hexadecimal to its corresponding RGB values. Then, to incorporate some form of interaction between the three terms, I used the ratio of a color among all 3 RGB colors. Below we have a simple example of the process.''')
 color1, color2 = st.columns(2)
 with color1:
-    color_demo = st.color_picker('Link Color', '#1DA1F2')
+    color_demo = st.color_picker('Link Color', '#1DA1F2', key = 42)
 with color2:
     if color_demo:
         r, g, b = hex_to_rgb(color)
