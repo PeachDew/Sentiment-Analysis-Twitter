@@ -187,35 +187,34 @@ with col2:
 
 
 st.markdown("## How it works 😋")
-
 st.markdown('''
 ### Text Preprocessing 🪚
-We employed various techniques to prepare the text data for further analysis. This involved several key steps:
+Here are various techniques I used to prepare the text data for further analysis. This involved several key steps:
 
-- Tokenization: We divided the text into individual tokens or words to facilitate further processing.
+- Tokenization: Dividing text into individual tokens or words.
 ''')
 st.code(''' "I ate a book!" --> "I" "ate" "a" "book!" ''')
 st.markdown('''            
-- Lowercasing: We converted all text to lowercase to ensure consistency and reduce the impact of case sensitivity.
+- Lowercasing: Converting all text to lowercase to ensure consistency and reduce the impact of case sensitivity.
 ''')
 st.code('''"I" "ate" "a" "book!" --> "i" "ate" "a" "book!"''')
 st.markdown('''     
-- Lemmatization: We applied lemmatization techniques to reduce words to their base or dictionary form, such as converting 'running' to 'run'.
+- Lemmatization: Reducing words to their base or dictionary form, such as converting 'running' to 'run'.
 ''')
 st.code('''"i" "ate" "a" "book!" --> "i" "eat" "a" "book!"''')
 st.markdown('''     
-Removing Stop Words: We eliminated common stop words from the text, such as 'the', 'and', and 'is', which do not contribute significant meaning to the analysis. List of words included in nltk's stopwords can be found here.
+Removing Stop Words: Eliminating common stop words from the text, such as 'the', 'and', and 'is', which do not contribute significant meaning to the analysis. List of words included in nltk's stopwords can be found [here](https://gist.github.com/sebleier/554280).
 ''')
 st.code('''"i" "eat" "a" "book!" --> "eat" "book!"''')
 st.markdown('''     
-- Removing Special Characters: We eliminated non-alphanumeric characters, symbols, and punctuation marks to focus on the essential textual content.
-- Handling Contractions: We expanded contractions to their full forms for 
-better analysis and understanding.
+- Removing Special Characters: Eliminate non-alphanumeric characters, symbols, and punctuation marks to focus on the essential textual content.
 ''')
 st.code('''"eat" "book!" --> "eat" "book"''')
 st.markdown('''     
-These preprocessing steps helped us clean and standardize the text data, making it more suitable for subsequent natural language processing tasks.
+These steps helped to clean and standardize the text data.
 ''')
+
+
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
 #st.write("LDA (Latent Dirichlet Allocation) is an algorithm used for topic modeling, a method that helps uncover the hidden themes and patterns within a collection of documents. It's like having a detective investigating a library full of books, trying to figure out the different topics covered. LDA assumes that each document is a mixture of various topics, and each topic is characterized by a distribution of words. By carefully examining the words and their frequencies, LDA helps us identify and understand the underlying themes present in the documents.)
