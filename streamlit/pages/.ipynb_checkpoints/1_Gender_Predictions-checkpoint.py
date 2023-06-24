@@ -51,7 +51,9 @@ with open("./Gender_Model_Save/final_model.pkl", "rb") as file:
 with open("./Gender_Model_Save/final_df.pkl", "rb") as file:
     final_df = pickle.load(file)     
 with open("./Gender_Model_Save/final_y.pkl", "rb") as file:
-    final_y = pickle.load(file)       
+    final_y = pickle.load(file)      
+with open("./Gender_Model_Save/full_df.pkl", "rb") as file:
+    full_df = pickle.load(file)          
     
 final_df['gender'] = final_y    
 
@@ -222,9 +224,10 @@ These steps helped to clean and standardize the text data.
 ''')
 st.markdown("## The Data: Columns, Classes 📊")
 final_df = final_df[['gender'] + list(final_df.columns[:-1])]
+full_df = full_df[['gender'] + list(full_df.columns[:-1])]
 st.markdown('''
-We have the target variable in the first column, 'gender' with 3 possible values: 0:female, 1:male, 2:brand.''')
-st.dataframe(final_df.head(10))
+We have the target variable in the first column, 'gender' with 3 possible values: 0 for female, 1 for male, and 2 for brand.''')
+st.dataframe(full_df.head(10))
 
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
