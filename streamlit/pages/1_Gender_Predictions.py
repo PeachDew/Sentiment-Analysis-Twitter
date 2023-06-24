@@ -245,7 +245,7 @@ with color2:
             r, g, b = hex_to_rgb(color)
             y = np.array([r,g,b])
             mycolors = ["red", "green", "blue"]
-            fig, ax = plt.subplots(figsize=(0.3, 0.3))
+            fig, ax = plt.subplots(figsize=(1, 1))
             ax.grid(False)
             plt.pie(y, colors=mycolors)
             fig.set_facecolor("none")
