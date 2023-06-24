@@ -267,6 +267,7 @@ st.markdown('''
 ### Favorite number, Tweet count, and Uppercase count #️⃣
 I considered using one-hot encoding for favorite number, as numbers can have character. For example 7 being known as a lucky number, or 42 being the meaning of life, or 13 being an unlucky number. However, I decided against it as it would increase the dimensionality substantially, and there might still be patterns between the magnitude of the number and the target. 
 Uppercase count, a simple count of uppercase characters of a username is a simple engineered feature, and tweet count can be inputs to a ML model as they are.''')
+st.image("https://i.pinimg.com/originals/ba/86/d3/ba86d3e30b6562392434eda0baaa1cc4.jpg", caption="https://themindsjournal.com/repeating-numbers-and-their-meanings/")
 
 st.markdown('''### Text Features: Sample Tweet, Bio, and Username 🔤
 To leverage the semantic meaning of the text fields, Word2Vec was employed to create word/character embeddings. Three separate models were trained, each dedicated to one of the categories, allowing for the capture of unique patterns and characteristics within the text data. These models were then utilized to predict the target variable on the training data, generating individual predictions for each category.
