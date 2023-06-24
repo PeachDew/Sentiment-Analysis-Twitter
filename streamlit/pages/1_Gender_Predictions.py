@@ -239,7 +239,7 @@ with color1:
 with color2:
     if color_demo:
         r, g, b = hex_to_rgb(color)
-        cr1, cr2, cr3 = columns(3)
+        cr1, cr2, cr3 = st.columns(3)
         with cr1:
             st.write(f"Red ratio: {r}")
         with cr2:
