@@ -252,7 +252,7 @@ with color2:
                 y = np.array([r,g,b])
                 mylabels = ["Red", "Green", "Blue"]
                 mycolors = ["red", "green", "blue"]
-                plt.pie(y, labels = mylabels, colors = mycolors, wedgeprops={'alpha':1})
+                plt.pie(y, labels = mylabels, colors = mycolors, wedgeprops={'alpha':0})
                 st.pyplot(plt)    
             else:
                 st.error("Please fill in all the input fields.")
