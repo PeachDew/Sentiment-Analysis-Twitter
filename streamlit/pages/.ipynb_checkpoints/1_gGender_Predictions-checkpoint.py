@@ -222,6 +222,7 @@ These steps helped to clean and standardize the text data.
 
 st.markdown("## The Data: Columns, Classes 😋")
 
+st.dataframe(final_df.head(10))
 
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
