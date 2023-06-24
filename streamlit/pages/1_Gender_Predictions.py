@@ -185,7 +185,24 @@ with col2:
             else:
                 st.error("Please fill in all the input fields.")
 
-        
+
+st.markdown("## How it works 😋")
+
+st.markdown('''
+### Text Preprocessing 🪚
+In the text preprocessing phase, we employed various techniques to prepare the text data for further analysis. This involved several key steps, including:
+
+- Tokenization: We divided the text into individual tokens or words to facilitate further processing.
+- Lowercasing: We converted all text to lowercase to ensure consistency and reduce the impact of case sensitivity.
+- Lemmatization: We applied lemmatization techniques to reduce words to their base or dictionary form, such as converting 'running' to 'run'.
+Removing Stop Words: We eliminated common stop words from the text, such as 'the', 'and', and 'is', which do not contribute significant meaning to the analysis.
+- Removing Special Characters: We eliminated non-alphanumeric characters, symbols, and punctuation marks to focus on the essential textual content.
+- Handling Contractions: We expanded contractions to their full forms for 
+better analysis and understanding.
+
+These preprocessing steps helped us clean and standardize the text data, making it more suitable for subsequent natural language processing tasks.
+''')
+
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
 #st.write("LDA (Latent Dirichlet Allocation) is an algorithm used for topic modeling, a method that helps uncover the hidden themes and patterns within a collection of documents. It's like having a detective investigating a library full of books, trying to figure out the different topics covered. LDA assumes that each document is a mixture of various topics, and each topic is characterized by a distribution of words. By carefully examining the words and their frequencies, LDA helps us identify and understand the underlying themes present in the documents.)
 #output_file = "./visualisations/lda_visualization.html"
