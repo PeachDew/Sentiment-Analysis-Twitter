@@ -18,10 +18,11 @@ import gensim
 from gensim.models import Word2Vec
 
 import nltk
-from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 import string
+
+nltk.download('stopwords')
 
 st.set_page_config(page_title="Gender Prediction", page_icon="👫")
 
