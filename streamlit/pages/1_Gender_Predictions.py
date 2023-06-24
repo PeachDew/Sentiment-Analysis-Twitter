@@ -246,7 +246,7 @@ with color2:
             y = np.array([r,g,b])
             mylabels = ["Red", "Green", "Blue"]
             mycolors = ["red", "green", "blue"]
-            fig, ax = plt.subplots(figsize = (0.5,0.5))
+            fig, ax = plt.subplots(figsize = (0.2,0.2))
             ax.grid(False)
             plt.pie(y, colors = mycolors)
             fig.patch.set_alpha(0)
@@ -258,7 +258,7 @@ with color2:
                 
                 cr1, cr2, cr3 = st.columns(3)
                 
-                data = {'Red ratio':r, 'Green ratio':g, 'Blue ratio':b}
+                data = [{'Red ratio': r, 'Green ratio': g, 'Blue ratio': b}]
                 col_df = pd.DataFrame(data)
                 st.dataframe(col_df)
                 with cr1:
