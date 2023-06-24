@@ -248,7 +248,7 @@ with color2:
             mycolors = ["red", "green", "blue"]
             fig, ax = plt.subplots(figsize = (0.5,0.5))
             ax.grid(False)
-            plt.pie(y, labels = mylabels, colors = mycolors)
+            plt.pie(y, colors = mycolors)
             fig.patch.set_alpha(0)
             st.pyplot(plt)
     if col_button:
@@ -260,7 +260,7 @@ with color2:
                 
                 data = {'Red ratio':r, 'Green ratio':g, 'Blue ratio':b}
                 col_df = pd.dataframe(data)
-                st.dataframe(col_df)
+                st.DataFrame(col_df)
                 with cr1:
                     st.write(f"Red ratio: {r*100:.1f}%")
                 with cr2:
