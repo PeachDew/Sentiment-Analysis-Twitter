@@ -46,7 +46,13 @@ with open("./Gender_Model_Save/desc_w2v_model.pkl", "rb") as file:
 with open("./Gender_Model_Save/text_w2v_model.pkl", "rb") as file:
     text_w2v_model = pickle.load(file)    
 with open("./Gender_Model_Save/final_model.pkl", "rb") as file:
-    final_model = pickle.load(file)      
+    final_model = pickle.load(file)    
+with open("./Gender_Model_Save/final_df.pkl", "rb") as file:
+    final_df = pickle.load(file)     
+with open("./Gender_Model_Save/final_y.pkl", "rb") as file:
+    final_y = pickle.load(file)       
+    
+final_df['gender'] = final_y    
 
 col_names = ['name_pred','red_ratio','green_ratio',
              'blue_ratio','fav_number','tweet_count',
@@ -213,6 +219,8 @@ st.code('''"eat" "book!" --> "eat" "book"''')
 st.markdown('''     
 These steps helped to clean and standardize the text data.
 ''')
+
+st.markdown("## The Data: Columns, Classes 😋")
 
 
 
