@@ -241,17 +241,18 @@ with color2:
         r, g, b = hex_to_rgb(color)
         cr1, cr2, cr3 = st.columns(3)
         with cr1:
-            st.write(f"Red ratio: {r}")
+            st.write(f"Red ratio: {r:.3d}")
         with cr2:
-            st.write(f"Green ratio: {g}")
+            st.write(f"Green ratio: {g:.3d}")
         with cr3:
-            st.write(f"Blue ratio: {b}")
+            st.write(f"Blue ratio: {b:.3d}")
         y = np.array([r,g,b])
         mylabels = ["Red", "Green", "Blue"]
         mycolors = ["red", "green", "blue"]
-        plt.pie(y, labels = mylabels, colors = mycolors)
-        plt.gca().set_facecolor('none')
-        st.pyplot(plt)    
+        fig = plt.pie(y, labels = mylabels, colors = mycolors)
+        fig.patch.set_facecolor('black')
+        fig.patch.set_alpha(1)
+        st.pyplot(fig)    
     else:
         st.error("Please fill in all the input fields.")
 
