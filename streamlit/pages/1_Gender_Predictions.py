@@ -224,9 +224,10 @@ These steps helped to clean and standardize the text data.
 ''')
 st.markdown("## The Data: Columns, Classes 📊")
 final_df = final_df[['gender'] + list(final_df.columns[:-1])]
+colns = ['gender','fav_number','text','description','name','red_ratio', 'green_ratio','blue_ratio','tweet_count','uppercase_count']
 st.markdown('''
 We have the target variable in the first column, 'gender' with 3 possible values: 0 for female, 1 for male, and 2 for brand.''')
-st.dataframe(full_df.head(10))
+st.dataframe(full_df[colns].head(10))
 
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
