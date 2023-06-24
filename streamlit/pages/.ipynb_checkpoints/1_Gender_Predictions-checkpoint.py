@@ -262,6 +262,11 @@ with color2:
                 st.dataframe(col_df.head())   
             else:
                 st.error("Please fill in all the input fields.")
+st.markdown("### Numerical Features: Favorite number, Tweet count, and Uppercase count #️⃣")
+
+st.markdown("### Text Features: Sample Tweet, Bio, and Username 🔤")
+
+st.markdown("### Putting it all together")
 
 
 #st.markdown("### LDA (Latent Dirichlet Allocation)")
