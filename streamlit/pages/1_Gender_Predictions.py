@@ -252,10 +252,10 @@ with color2:
                 y = np.array([r,g,b])
                 mylabels = ["Red", "Green", "Blue"]
                 mycolors = ["red", "green", "blue"]
-                fig, ax = plt.subplots(figsize = (5,5))
+                fig, ax = plt.figure(figsize = (5,5))
                 ax.grid(False)
                 plt.pie(y, labels = mylabels, colors = mycolors)
-                ax.patch.set_alpha(0)
+                fig.patch.set_alpha(0)
                 st.pyplot(plt)    
             else:
                 st.error("Please fill in all the input fields.")
