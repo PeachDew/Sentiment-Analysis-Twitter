@@ -29,6 +29,7 @@ from nltk.stem import WordNetLemmatizer
 import string
 
 nltk.download('stopwords')
+nltk.download('punkt_tab')
 nltk.download('punkt')
 nltk.download('wordnet')
 
